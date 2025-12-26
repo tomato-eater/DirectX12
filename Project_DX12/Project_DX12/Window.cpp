@@ -19,7 +19,7 @@ LRESULT CALLBACK Window::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
 	return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
 
-[[nodiscard]] bool Window::Create(HINSTANCE instance, string name, int wi, int hi)
+bool Window::Create(HINSTANCE instance, string name, int wi, int hi)
 {
     WNDCLASS wc{};
     wc.lpfnWndProc = WindowProc;

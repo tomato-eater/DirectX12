@@ -10,6 +10,69 @@
     <Filter Include="File\Window">
       <UniqueIdentifier>{3f6d75d5-be5d-4ce2-806b-5da777a64542}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File\Direct">
+      <UniqueIdentifier>{5bfffa18-ed65-4adb-adfa-421c81f36e9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Direct\Fac_Ada">
+      <UniqueIdentifier>{6d4a7146-4a06-482e-8a3a-0dcadbf5aa2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Direct\Device">
+      <UniqueIdentifier>{9d35d876-4470-47dc-855e-29ec7a57ea74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Direct\ComQue">
+      <UniqueIdentifier>{778b8cf7-4ed9-4641-a20f-2608fc27cca8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Direct\SwapC">
+      <UniqueIdentifier>{00806d63-5ef3-4b11-b2a0-3db364f508e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Direct\Heap">
+      <UniqueIdentifier>{b1ecc567-a9d4-47be-ac05-f306ba519292}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Direct\Target">
+      <UniqueIdentifier>{23bf978f-68eb-4dcb-ad7b-bb25bd560acd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Direct\ComAll">
+      <UniqueIdentifier>{526e7f20-d2c6-43ec-8613-5021d17f03a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Direct\ComLis">
+      <UniqueIdentifier>{801ca9ca-5661-411a-aca2-7adcb945c067}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Direct\Fence">
+      <UniqueIdentifier>{0a49316e-08b4-4c5f-b3ff-ce08a7f1d057}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Data">
+      <UniqueIdentifier>{d35c0d2c-5f01-41ee-92ca-7c1317582e53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Data\△">
+      <UniqueIdentifier>{9a01738c-167f-4c51-9a15-a81aecea5dbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Data\□">
+      <UniqueIdentifier>{30cdaac5-abae-46fe-a644-47babaca1872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Direct\RootSig">
+      <UniqueIdentifier>{c542a8bf-456b-4afa-a3a7-5e47159e6a90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Data\Shader">
+      <UniqueIdentifier>{908f3125-c669-4bd1-a1c7-40828eb6d17d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Direct\PipLine">
+      <UniqueIdentifier>{f36fa405-d1d4-43f8-879e-6e58148b7077}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Camera">
+      <UniqueIdentifier>{7da5d7be-c155-44fa-97f0-f646bfae6a27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Data\Obj">
+      <UniqueIdentifier>{a00634fe-e7e5-43ea-95e8-a370fa92e28c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Direct\ConsBuffer">
+      <UniqueIdentifier>{f4c8c58d-9dd7-4482-83f4-e94e0f82974d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Direct\DepthBuffer">
+      <UniqueIdentifier>{e862cad2-03ef-411c-9fe7-7aed26468f3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\HLSL">
+      <UniqueIdentifier>{fc775bfa-711a-448d-b879-9ad66185c4f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -18,10 +81,125 @@
     <ClCompile Include="Window.cpp">
       <Filter>File\Window</Filter>
     </ClCompile>
+    <ClCompile Include="Fac_Ada.cpp">
+      <Filter>File\Direct\Fac_Ada</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp">
+      <Filter>File\Direct\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="ComQue.cpp">
+      <Filter>File\Direct\ComQue</Filter>
+    </ClCompile>
+    <ClCompile Include="SwapC.cpp">
+      <Filter>File\Direct\SwapC</Filter>
+    </ClCompile>
+    <ClCompile Include="Heap.cpp">
+      <Filter>File\Direct\Heap</Filter>
+    </ClCompile>
+    <ClCompile Include="Target.cpp">
+      <Filter>File\Direct\Target</Filter>
+    </ClCompile>
+    <ClCompile Include="ComAll.cpp">
+      <Filter>File\Direct\ComAll</Filter>
+    </ClCompile>
+    <ClCompile Include="ComLis.cpp">
+      <Filter>File\Direct\ComLis</Filter>
+    </ClCompile>
+    <ClCompile Include="Fence.cpp">
+      <Filter>File\Direct\Fence</Filter>
+    </ClCompile>
+    <ClCompile Include="DeltaPoly.cpp">
+      <Filter>File\Data\△</Filter>
+    </ClCompile>
+    <ClCompile Include="RootSig.cpp">
+      <Filter>File\Direct\RootSig</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>File\Data\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="PipLine.cpp">
+      <Filter>File\Direct\PipLine</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>File\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="ConBuffer.cpp">
+      <Filter>File\Direct\ConsBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj.cpp">
+      <Filter>File\Data\Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="SquarePoly.cpp">
+      <Filter>File\Data\□</Filter>
+    </ClCompile>
+    <ClCompile Include="DepBuffer.cpp">
+      <Filter>File\Direct\DepthBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Amo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
       <Filter>File\Window</Filter>
     </ClInclude>
+    <ClInclude Include="Fac_Ada.h">
+      <Filter>File\Direct\Fac_Ada</Filter>
+    </ClInclude>
+    <ClInclude Include="Device.h">
+      <Filter>File\Direct\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="ComQue.h">
+      <Filter>File\Direct\ComQue</Filter>
+    </ClInclude>
+    <ClInclude Include="SwapC.h">
+      <Filter>File\Direct\SwapC</Filter>
+    </ClInclude>
+    <ClInclude Include="Heap.h">
+      <Filter>File\Direct\Heap</Filter>
+    </ClInclude>
+    <ClInclude Include="Target.h">
+      <Filter>File\Direct\Target</Filter>
+    </ClInclude>
+    <ClInclude Include="ComAll.h">
+      <Filter>File\Direct\ComAll</Filter>
+    </ClInclude>
+    <ClInclude Include="ComLis.h">
+      <Filter>File\Direct\ComLis</Filter>
+    </ClInclude>
+    <ClInclude Include="Fence.h">
+      <Filter>File\Direct\Fence</Filter>
+    </ClInclude>
+    <ClInclude Include="DeltaPoly.h">
+      <Filter>File\Data\△</Filter>
+    </ClInclude>
+    <ClInclude Include="RootSig.h">
+      <Filter>File\Direct\RootSig</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>File\Data\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="PipLine.h">
+      <Filter>File\Direct\PipLine</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>File\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="ConBuffer.h">
+      <Filter>File\Direct\ConsBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>File\Data\Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="SquarePoly.h">
+      <Filter>File\Data\□</Filter>
+    </ClInclude>
+    <ClInclude Include="DepBuffer.h">
+      <Filter>File\Direct\DepthBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Amo.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="shader.hlsl">
+      <Filter>File\HLSL</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

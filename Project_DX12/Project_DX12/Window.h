@@ -1,10 +1,11 @@
 #pragma once
 
-
 #include <Windows.h>
 #include <string>
 using namespace std;
 #include <cassert>
+
+#include "Input.h"
 
 class Window
 {
@@ -16,6 +17,8 @@ public:
 	Window() = default;
 	~Window() = default;
 
-	[[nodiscard]] bool Create(HINSTANCE instance, string name, int wi, int hi);
+	bool Create(HINSTANCE instance, string name, int wi, int hi);
+
+	HWND GetHandle() { return handle; }
 };
 

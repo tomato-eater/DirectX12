@@ -104,10 +104,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <PreventDllBinding>true</PreventDllBinding>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -118,20 +120,66 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <PreventDllBinding>true</PreventDllBinding>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Amo.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="ComAll.h" />
+    <ClInclude Include="ComLis.h" />
+    <ClInclude Include="ComQue.h" />
+    <ClInclude Include="ConBuffer.h" />
+    <ClInclude Include="DeltaPoly.h" />
+    <ClInclude Include="DepBuffer.h" />
+    <ClInclude Include="Device.h" />
+    <ClInclude Include="Fac_Ada.h" />
+    <ClInclude Include="Fence.h" />
+    <ClInclude Include="Heap.h" />
+    <ClInclude Include="Obj.h" />
+    <ClInclude Include="PipLine.h" />
+    <ClInclude Include="RootSig.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="SquarePoly.h" />
+    <ClInclude Include="SwapC.h" />
+    <ClInclude Include="Target.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Amo.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ComAll.cpp" />
+    <ClCompile Include="ComLis.cpp" />
+    <ClCompile Include="ComQue.cpp" />
+    <ClCompile Include="ConBuffer.cpp" />
+    <ClCompile Include="DeltaPoly.cpp" />
+    <ClCompile Include="DepBuffer.cpp" />
+    <ClCompile Include="Device.cpp" />
+    <ClCompile Include="Fac_Ada.cpp" />
+    <ClCompile Include="Fence.cpp" />
+    <ClCompile Include="Heap.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Obj.cpp" />
+    <ClCompile Include="PipLine.cpp" />
+    <ClCompile Include="RootSig.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SquarePoly.cpp" />
+    <ClCompile Include="SwapC.cpp" />
+    <ClCompile Include="Target.cpp" />
     <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="shader.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
