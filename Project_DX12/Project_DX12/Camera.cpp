@@ -1,4 +1,4 @@
-#include "Camera.h"
+﻿#include "Camera.h"
 
 constexpr float eyeMoveSpeed = 0.03f;
 constexpr float destTargetToView = -5.0f;
@@ -12,8 +12,40 @@ void Camera::Initialize(int wi, int hi)
 	projection = DirectX::XMMatrixPerspectiveFovLH(DirectX::XM_PIDIV4, static_cast<float>(wi) / static_cast<float>(hi), 0.1f, 100.0f);
 }
 
+void Camera::Set(ConBuffer& comBuffer)
+{
+	ConstBufferData camData
+	{
+		view,
+		projection
+	};
+
+	UINT8* pData{};
+	comBuffer.GetBuf()->Map(0, nullptr, reinterpret_cast<void**>(&pData));
+	memcpy(pData, &camData, sizeof(camData));
+	comBuffer.GetBuf()->Unmap(0, nullptr);
+
+}
+
+/*
+
+
+				Camera::ConstBufferData camData
+				{
+					DirectX::XMMatrixTranspose(camera.GetView()),
+					DirectX::XMMatrixTranspose(camera.GetPro())
+				};
+				UINT8* pCamData{};
+				camBuff.GetBuf()->Map(0, nullptr, reinterpret_cast<void**>(&pCamData));
+				memcpy(pCamData, &camData, sizeof(camData));
+				camBuff.GetBuf()->Unmap(0, nullptr);
+				comLis.GetList()->SetGraphicsRootDescriptorTable(0, camBuff.GetHand());
+
+*/
+
 void Camera::Updata()
-{/*
+{
+	/*
 	static float angle = 0.0f;
 	if (GetAsyncKeyState('A'))
 	{

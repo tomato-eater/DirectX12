@@ -1,9 +1,11 @@
-#pragma once
+﻿#pragma once
 
 #include <DirectXMath.h>
 #include <cmath>
 
 #include <dinput.h>
+
+#include "ConBuffer.h"
 
 class Camera
 {
@@ -26,6 +28,8 @@ public:
 	~Camera() = default;
 
 	void Initialize(int wi, int hi);
+
+	void Set(ConBuffer& comBuffer);
 
 	void Updata();
 
