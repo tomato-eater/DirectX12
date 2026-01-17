@@ -12,7 +12,7 @@ void Camera::Initialize(int wi, int hi)
 	projection = DirectX::XMMatrixPerspectiveFovLH(DirectX::XM_PIDIV4, static_cast<float>(wi) / static_cast<float>(hi), 0.1f, 100.0f);
 }
 
-void Camera::Updata()
+void Camera::Update()
 {/*
 	static float angle = 0.0f;
 	if (GetAsyncKeyState('A'))

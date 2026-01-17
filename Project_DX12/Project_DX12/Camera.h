@@ -27,7 +27,7 @@ public:
 
 	void Initialize(int wi, int hi);
 
-	void Updata();
+	void Update();
 
 	DirectX::XMMATRIX GetView() { return view; }
 	DirectX::XMMATRIX GetPro() { return projection; }

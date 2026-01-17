@@ -133,10 +133,12 @@
   <ItemGroup>
     <ClInclude Include="Amo.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraPre.h" />
     <ClInclude Include="ComAll.h" />
     <ClInclude Include="ComLis.h" />
     <ClInclude Include="ComQue.h" />
     <ClInclude Include="ConBuffer.h" />
+    <ClInclude Include="Delta.h" />
     <ClInclude Include="DeltaPoly.h" />
     <ClInclude Include="DepBuffer.h" />
     <ClInclude Include="Device.h" />
@@ -147,6 +149,7 @@
     <ClInclude Include="PipLine.h" />
     <ClInclude Include="RootSig.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Square.h" />
     <ClInclude Include="SquarePoly.h" />
     <ClInclude Include="SwapC.h" />
     <ClInclude Include="Target.h" />
@@ -155,10 +158,12 @@
   <ItemGroup>
     <ClCompile Include="Amo.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraPre.cpp" />
     <ClCompile Include="ComAll.cpp" />
     <ClCompile Include="ComLis.cpp" />
     <ClCompile Include="ComQue.cpp" />
     <ClCompile Include="ConBuffer.cpp" />
+    <ClCompile Include="Delta.cpp" />
     <ClCompile Include="DeltaPoly.cpp" />
     <ClCompile Include="DepBuffer.cpp" />
     <ClCompile Include="Device.cpp" />
@@ -170,6 +175,7 @@
     <ClCompile Include="PipLine.cpp" />
     <ClCompile Include="RootSig.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Square.cpp" />
     <ClCompile Include="SquarePoly.cpp" />
     <ClCompile Include="SwapC.cpp" />
     <ClCompile Include="Target.cpp" />

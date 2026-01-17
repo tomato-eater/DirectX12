@@ -35,7 +35,7 @@ public:
 
 	void Summon(Device& devi, Heap& heap, Obj& sqrObj, ComLis& list);
 
-	void Updata(ComLis& list);
+	void Update(ComLis& list);
 
 	void Check(Obj& target);
 };

@@ -73,6 +73,21 @@
     <Filter Include="File\HLSL">
       <UniqueIdentifier>{fc775bfa-711a-448d-b879-9ad66185c4f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File\Pre">
+      <UniqueIdentifier>{89382027-9bff-424c-bccb-53a59e2d0970}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Pre\Amo">
+      <UniqueIdentifier>{2aa3a5f4-6109-483e-89d5-c7b487c3230f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Pre\Delta">
+      <UniqueIdentifier>{c19322dc-e8f9-41ed-8e41-b21ccd4a5605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Pre\Square">
+      <UniqueIdentifier>{24f1f35f-2ee5-4cf5-93b4-7fa5c6868550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Pre\Camera">
+      <UniqueIdentifier>{8ff4b436-741a-4708-b6d0-1aed1004cb15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -135,7 +150,18 @@
     <ClCompile Include="DepBuffer.cpp">
       <Filter>File\Direct\DepthBuffer</Filter>
     </ClCompile>
-    <ClCompile Include="Amo.cpp" />
+    <ClCompile Include="Amo.cpp">
+      <Filter>File\Pre\Amo</Filter>
+    </ClCompile>
+    <ClCompile Include="Delta.cpp">
+      <Filter>File\Pre\Delta</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraPre.cpp">
+      <Filter>File\Pre\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Square.cpp">
+      <Filter>File\Pre\Square</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -195,7 +221,18 @@
     <ClInclude Include="DepBuffer.h">
       <Filter>File\Direct\DepthBuffer</Filter>
     </ClInclude>
-    <ClInclude Include="Amo.h" />
+    <ClInclude Include="Amo.h">
+      <Filter>File\Pre\Amo</Filter>
+    </ClInclude>
+    <ClInclude Include="Delta.h">
+      <Filter>File\Pre\Delta</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraPre.h">
+      <Filter>File\Pre\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Square.h">
+      <Filter>File\Pre\Square</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.hlsl">

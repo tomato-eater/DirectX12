@@ -15,7 +15,7 @@ void Amo::Summon(Device& devi, Heap& heap, Obj& sqrObj, ComLis& list)
 	}
 }
 
-void Amo::Updata(ComLis& list)
+void Amo::Update(ComLis& list)
 {
 	for(int i = 0; i < vacants.size(); i++)
 	{
