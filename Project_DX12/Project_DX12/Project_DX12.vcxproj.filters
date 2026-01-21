@@ -88,6 +88,9 @@
     <Filter Include="File\Pre\Camera">
       <UniqueIdentifier>{8ff4b436-741a-4708-b6d0-1aed1004cb15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File\Data\Cube">
+      <UniqueIdentifier>{f640bb4e-b595-4c2e-9040-baf557931098}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -162,6 +165,9 @@
     <ClCompile Include="Square.cpp">
       <Filter>File\Pre\Square</Filter>
     </ClCompile>
+    <ClCompile Include="CubePoly.cpp">
+      <Filter>File\Data\Cube</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -232,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="Square.h">
       <Filter>File\Pre\Square</Filter>
+    </ClInclude>
+    <ClInclude Include="CubePoly.h">
+      <Filter>File\Data\Cube</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

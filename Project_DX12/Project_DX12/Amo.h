@@ -16,14 +16,10 @@
 class Amo
 {
 private:	
-	SquarePoly amoPol{};
-	ConBuffer amoBuff{};
-	Obj amoObj{};
-
-	std::vector<bool> vacants { std::vector<bool>(100) };
-	std::vector<SquarePoly> pols { std::vector<SquarePoly>(100) };
-	std::vector<ConBuffer> buffs{ std::vector<ConBuffer>(100) };
-	std::vector<Obj> objs{ std::vector<Obj>(100) };
+	std::vector<bool> vacants{};
+	std::vector<SquarePoly> pols{};
+	std::vector<ConBuffer> buffs{};
+	std::vector<Obj> objs{};
 
 	DirectX::XMFLOAT3 tPos = { 0.0f, 1.5f, 5.0f };
 	DirectX::XMFLOAT3 rPos = { 1.0f,-0.5f, 5.0f };

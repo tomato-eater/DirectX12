@@ -4,15 +4,22 @@ void Amo::Summon(Device& devi, Heap& heap, Obj& sqrObj, ComLis& list)
 {
 	for(int i = 0; i < vacants.size(); i++)
 	{
-		if (!vacants[i])
-		{
-			vacants[i] = true;
-			if (pols[i].Create(devi, true))		assert(false && "弾ポリゴン作成ー失敗ー");
-			if (buffs[i].Create(devi, heap, sizeof(SquarePoly::ConstBufferData), 3 + i))		assert(false && "弾コンスタントバッファ作成ー失敗ー");
-			objs[i].Initialize(sqrObj.GetPos(), { 0.0f, 0.0f, 1.0f, 0.5f });
-			break;
-		}
+		if (vacants[i]) continue;
+
+		vacants[i] = true;
+		if (pols[i].Create(devi, true))		assert(false && "弾ポリゴン作成ー失敗ー");
+		if (buffs[i].Create(devi, heap, sizeof(SquarePoly::ConstBufferData), 3 + i))	assert(false && "弾コンスタントバッファ作成ー失敗ー");
+		objs[i].Initialize(sqrObj.GetPos(), { 0.0f, 0.0f, 1.0f, 0.5f });
+		return;
 	}
+	vacants.push_back(true);
+	pols.push_back(SquarePoly{});
+	buffs.push_back(ConBuffer{});
+	objs.push_back(Obj{});
+
+	if (pols.back().Create(devi, true))		assert(false && "弾ポリゴン作成ー失敗ー");
+	if (buffs.back().Create(devi, heap, sizeof(SquarePoly::ConstBufferData), 3 + (UINT)(buffs.size() - 1)))	assert(false && "弾コンスタントバッファ作成ー失敗ー");
+	objs.back().Initialize(sqrObj.GetPos(), { 0.0f, 0.0f, 1.0f, 0.5f });
 }
 
 void Amo::Update(ComLis& list)

@@ -100,11 +100,12 @@ public:
 		if (consHeap.Create(devi, D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, swapC.GetDesc().BufferCount, true))			return false;
 
 		//デプスクリプタヒープの生成
-		if (depsHeap.Create(devi, D3D12_DESCRIPTOR_HEAP_TYPE_DSV, 1))			return false;
+		if (depsHeap.Create(devi, D3D12_DESCRIPTOR_HEAP_TYPE_DSV, 1))		return false;
 
 		//デプスバッファの生成
-		if (depBuff.Create(devi, depsHeap, size.first, size.second))			return false;
+		if (depBuff.Create(devi, depsHeap, size.first, size.second))		return false;
 
+		//特に問題なし！
 		return true;
 	}
 
@@ -118,7 +119,7 @@ public:
 		delta.Set({ 0.0f,  0.5f, 5.0f }, { 1.0f, 1.0f, 1.0f, 1.0f });	//的の初期位置、初期色
 
 		if (sqare.Create(devi, consHeap, 2))			return;			//自身の生成
-		sqare.Set({ 0.0f,  0.0f,  0.0f }, { 0.0f, 1.0f, 0.0f, 1.0f });	//自身の初期値、初期色
+		sqare.Set({ 0.0f,  0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f, 1.0f });	//自身の初期値、初期色
 
 		MSG msg{};
 		while (GetMessage(&msg, nullptr, 0, 0))		//ループ開始
@@ -139,10 +140,12 @@ public:
 			//コマンドリストのターゲットを変更
 			comLis.Chenge(render, idx, D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
 
+			//ターゲットの設定
 			D3D12_CPU_DESCRIPTOR_HANDLE handles[] = { render.GetHandle(devi, descHeap, idx) };
 			D3D12_CPU_DESCRIPTOR_HANDLE depthHand = depBuff.GetHandle();
 			comLis.GetList()->OMSetRenderTargets(1, handles, false, &depthHand);
 			
+			//背景色の設定
 			float backColor[] = { 0.2f, 0.2f, 0.2f, 1.0f };
 			comLis.GetList()->ClearRenderTargetView(handles[0], backColor, 0, nullptr);
 			comLis.GetList()->ClearDepthStencilView(depthHand, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
@@ -155,33 +158,38 @@ public:
 			comLis.GetList()->SetPipelineState(pipLine.GetPip());
 
 			camera.Change(comLis);	//カメラの位置の変更受付
-
-			if (GetAsyncKeyState('B') && !fire)					//弾発射
-			{	
-				amo.Summon(devi, consHeap, sqare.GetObj(), comLis);
-				fire = true;
-			}
-			if (!GetAsyncKeyState('B') && fire) fire = false;	//発射後
-
 			camera.Update();		//カメラの更新
 
 			delta.Update(comLis);	//的の更新
 			sqare.Update(comLis);	//自身の更新
 			amo.Update(comLis);		//弾の更新
 
+			if (GetAsyncKeyState('B') && !fire)					//弾発射
+			{
+				amo.Summon(devi, consHeap, sqare.GetObj(), comLis);
+				fire = true;
+			}
+			if (!GetAsyncKeyState('B') && fire) fire = false;	//発射後
+
+
+			//コマンドリストのターゲットを変更、閉鎖
 			comLis.Chenge(render, idx, D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
 			comLis.GetList()->Close();
 
+			//キューにリストをセットして実行
 			ID3D12CommandList* ppComLiss[] = { comLis.GetList() };
 			comQ.GetQ()->ExecuteCommandLists(_countof(ppComLiss), ppComLiss);
 
-
+			//プレゼント
 			swapC.GetChain()->Present(1, 0);
+
+			//次のフレーム用のフェンスセット
 			fence.SetNext(comQ, idx);
 
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 
+			//Zキーで終了
 			if (GetAsyncKeyState('Z')) break;
 		}
 	}
