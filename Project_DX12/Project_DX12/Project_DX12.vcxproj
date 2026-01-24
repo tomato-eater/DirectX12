@@ -139,6 +139,7 @@
     <ClInclude Include="ComQue.h" />
     <ClInclude Include="ConBuffer.h" />
     <ClInclude Include="CubePoly.h" />
+    <ClInclude Include="CubePre.h" />
     <ClInclude Include="Delta.h" />
     <ClInclude Include="DeltaPoly.h" />
     <ClInclude Include="DepBuffer.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="ComQue.cpp" />
     <ClCompile Include="ConBuffer.cpp" />
     <ClCompile Include="CubePoly.cpp" />
+    <ClCompile Include="CubePre.cpp" />
     <ClCompile Include="Delta.cpp" />
     <ClCompile Include="DeltaPoly.cpp" />
     <ClCompile Include="DepBuffer.cpp" />

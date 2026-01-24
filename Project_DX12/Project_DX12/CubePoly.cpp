@@ -1,7 +1,7 @@
 #include "CubePoly.h"
 
 CubePoly::~CubePoly()
-{
+{/*
 	if(vertexBuffer)
 	{
 		vertexBuffer->Release();
@@ -11,7 +11,7 @@ CubePoly::~CubePoly()
 	{
 		indexBuffer->Release();
 		indexBuffer = nullptr;
-	}
+	}*/
 }
 
 struct Vertex
@@ -50,21 +50,96 @@ bool CubePoly::Create(Device& devi)
 	{
 		Vertex cubeVertices[] =
 		{
-			{{-0.5f,  0.5f, -0.5f}, {1.0f, 0.0f, 0.0f, 1.0f}},
-			{{ 0.5f,  0.5f, -0.5f}, {0.0f, 1.0f, 0.0f, 1.0f}},
-			{{-0.5f, -0.5f, -0.5f}, {0.0f, 0.0f, 1.0f, 1.0f}},
-			{{ 0.5f, -0.5f, -0.5f}, {1.0f, 1.0f, 0.0f, 1.0f}},
-			{{-0.5f,  0.5f,  0.5f}, {1.0f, 0.0f, 1.0f, 1.0f}},
-			{{ 0.5f,  0.5f,  0.5f}, {0.0f, 1.0f, 1.0f, 1.0f}},
-			{{-0.5f, -0.5f,  0.5f}, {1.0f, 1.0f, 1.0f, 1.0f}},
-			{{ 0.5f, -0.5f,  0.5f}, {0.0f, 0.0f, 0.0f, 1.0f}}
+			{{-0.5f,  0.5f, -0.5f}, {1.0f, 0.0f, 0.0f, 1.0f}}, //0:左上前
+			{{ 0.5f,  0.5f, -0.5f}, {0.0f, 1.0f, 0.0f, 1.0f}}, //1:右上
+			{{-0.5f, -0.5f, -0.5f}, {0.0f, 0.0f, 1.0f, 1.0f}}, //2:左下
+			{{ 0.5f, -0.5f, -0.5f}, {1.0f, 1.0f, 0.0f, 1.0f}}, //3:右下
+			{{-0.5f,  0.5f,  0.5f}, {1.0f, 0.0f, 1.0f, 1.0f}}, //4:左上奥
+			{{ 0.5f,  0.5f,  0.5f}, {0.0f, 1.0f, 1.0f, 1.0f}}, //5:右上
+			{{-0.5f, -0.5f,  0.5f}, {1.0f, 1.0f, 1.0f, 1.0f}}, //6:左下
+			{{ 0.5f, -0.5f,  0.5f}, {0.0f, 0.0f, 0.0f, 1.0f}}  //7:右下
 		};
 		auto size = sizeof(cubeVertices);
+
 		D3D12_HEAP_PROPERTIES heap{};
 		D3D12_RESOURCE_DESC desc{};
+
 		SetHeap(heap);
 		SetDesc(desc, size);
+
 		auto hr = devi.GetDev()->CreateCommittedResource(&heap, D3D12_HEAP_FLAG_NONE, &desc, D3D12_RESOURCE_STATE_GENERIC_READ, nullptr, IID_PPV_ARGS(&vertexBuffer));
 		if (FAILED(hr))
 		{
-			assert(false && "頂
+			assert(false && "頂点バッファ作成ー失敗ー");
+			return true;
+		}
+		Vertex* data{};
+		hr = vertexBuffer->Map(0, nullptr, reinterpret_cast<void**>(&data));
+		if (FAILED(hr))
+		{
+			assert(false && "頂点バッファのマップー失敗ー");
+			return true;
+		}
+		memcpy_s(data, size, cubeVertices, size);
+		vertexBuffer->Unmap(0, nullptr);
+
+		vertexView.BufferLocation = vertexBuffer->GetGPUVirtualAddress();
+		vertexView.SizeInBytes = size;
+		vertexView.StrideInBytes = sizeof(Vertex);
+	}
+
+	/*
+			筒
+			2, 0, 3, 1, //前面
+			7, 5,       //右面
+			6, 4,		//奥面
+			2, 0,		//左面
+	*/
+	//インデックスデータ
+	{
+		unsigned short cubeIndices[] =
+		{
+			4,5,0,1,
+			2,3,
+			6,7,
+			1,5
+		};
+		auto size = sizeof(cubeIndices);
+
+		D3D12_HEAP_PROPERTIES heap{};
+		D3D12_RESOURCE_DESC desc{};
+
+		SetHeap(heap);
+		SetDesc(desc, size);
+
+		auto hr = devi.GetDev()->CreateCommittedResource(&heap, D3D12_HEAP_FLAG_NONE, &desc, D3D12_RESOURCE_STATE_GENERIC_READ, nullptr, IID_PPV_ARGS(&indexBuffer));
+		if (FAILED(hr))
+		{
+			assert(false && "インデックスバッファ作成ー失敗ー");
+			return true;
+		}
+		unsigned short* data{};
+		hr = indexBuffer->Map(0, nullptr, reinterpret_cast<void**>(&data));
+		if (FAILED(hr))
+		{
+			assert(false && "インデックスバッファのマップー失敗ー");
+			return true;
+		}
+		memcpy_s(data, size, cubeIndices, size);
+		indexBuffer->Unmap(0, nullptr);
+
+		indexView.BufferLocation = indexBuffer->GetGPUVirtualAddress();
+		indexView.SizeInBytes = size;
+		indexView.Format = DXGI_FORMAT_R16_UINT;
+	}
+
+	return false;
+}
+
+void CubePoly::Draw(ComLis& list)
+{
+	list.GetList()->IASetVertexBuffers(0, 1, &vertexView);
+	list.GetList()->IASetIndexBuffer(&indexView);
+	list.GetList()->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+	list.GetList()->DrawIndexedInstanced(10, 1, 0, 0, 0);
+}

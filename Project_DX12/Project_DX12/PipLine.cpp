@@ -19,7 +19,7 @@ bool PipLine::Create(Device& devi, RootSig& root, Shader& shader)
 
 	D3D12_RASTERIZER_DESC rDesc{};
 	rDesc.FillMode = D3D12_FILL_MODE_SOLID;
-	rDesc.CullMode = D3D12_CULL_MODE_BACK;
+	rDesc.CullMode = D3D12_CULL_MODE_NONE;
 	rDesc.FrontCounterClockwise = false;
 	rDesc.DepthBias = D3D12_DEFAULT_DEPTH_BIAS;
 	rDesc.DepthBiasClamp = D3D12_DEFAULT_DEPTH_BIAS_CLAMP;

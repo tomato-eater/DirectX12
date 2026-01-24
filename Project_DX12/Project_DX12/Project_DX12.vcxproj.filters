@@ -91,6 +91,9 @@
     <Filter Include="File\Data\Cube">
       <UniqueIdentifier>{f640bb4e-b595-4c2e-9040-baf557931098}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File\Pre\Cube">
+      <UniqueIdentifier>{d57e741e-3e97-42b0-a17a-16eff73e37be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -168,6 +171,9 @@
     <ClCompile Include="CubePoly.cpp">
       <Filter>File\Data\Cube</Filter>
     </ClCompile>
+    <ClCompile Include="CubePre.cpp">
+      <Filter>File\Pre\Cube</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -241,6 +247,9 @@
     </ClInclude>
     <ClInclude Include="CubePoly.h">
       <Filter>File\Data\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="CubePre.h">
+      <Filter>File\Pre\Cube</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

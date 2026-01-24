@@ -18,6 +18,7 @@
 #include "Square.h"
 #include "Amo.h"
 
+#include "CubePre.h"
 
 class Operations
 {
@@ -49,6 +50,8 @@ private:
 	Delta delta{};		//三角形　的
 	Square sqare{};		//四角形　自身
 	Amo amo{};			//四角形　弾
+
+	CubePre cube{};
 
 public:
 	Operations() = default;
@@ -131,7 +134,8 @@ public:
 			fence.Check(idx);
 
 			//的と弾丸の距離を確認
-			amo.Check(delta.GetObj());
+			//amo.Check(delta.GetObj());
+			cube.Check(delta.GetObj());
 
 			//コマンドアロケーター_コマンドリスト をリセット
 			comAll[idx].Reset();
@@ -162,11 +166,14 @@ public:
 
 			delta.Update(comLis);	//的の更新
 			sqare.Update(comLis);	//自身の更新
-			amo.Update(comLis);		//弾の更新
+			//amo.Update(comLis);		//弾の更新
+
+			cube.Update(comLis);	//弾(立体)の更新
 
 			if (GetAsyncKeyState('B') && !fire)					//弾発射
 			{
-				amo.Summon(devi, consHeap, sqare.GetObj(), comLis);
+				//amo.Summon(devi, consHeap, sqare.GetObj(), comLis);  //2D
+				cube.Summon(devi, consHeap, sqare.GetObj(), comLis);	//3D
 				fire = true;
 			}
 			if (!GetAsyncKeyState('B') && fire) fire = false;	//発射後
