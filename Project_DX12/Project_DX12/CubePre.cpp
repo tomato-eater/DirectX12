@@ -9,7 +9,7 @@ void CubePre::Summon(Device& devi, Heap& heap, Obj& sqrObj, ComLis& list)
 		vacants[i] = true;
 		if (pols[i].Create(devi))		assert(false && "弾ポリゴン作成ー失敗ー");
 		if (buffs[i].Create(devi, heap, sizeof(CubePoly::ConstBufferData), 3 + i))	assert(false && "弾コンスタントバッファ作成ー失敗ー");
-		objs[i].Initialize(sqrObj.GetPos(), { 0.0f, 0.0f, 1.0f, 0.5f });
+		objs[i].Initialize({ sqrObj.GetPos().x,sqrObj.GetPos().y,sqrObj.GetPos().z + 0.1f }, { 0.0f, 0.0f, 1.0f, 0.5f });
 		return;
 	}
 	vacants.push_back(true);
@@ -19,7 +19,7 @@ void CubePre::Summon(Device& devi, Heap& heap, Obj& sqrObj, ComLis& list)
 
 	if (pols.back().Create(devi))		assert(false && "弾ポリゴン作成ー失敗ー");
 	if (buffs.back().Create(devi, heap, sizeof(CubePoly::ConstBufferData), 3 + (UINT)(buffs.size() - 1)))	assert(false && "弾コンスタントバッファ作成ー失敗ー");
-	objs.back().Initialize(sqrObj.GetPos(), { 0.0f, 0.0f, 1.0f, 0.5f });
+	objs.back().Initialize({ sqrObj.GetPos().x,sqrObj.GetPos().y,sqrObj.GetPos().z + 0.1f }, { 0.0f, 0.0f, 1.0f, 0.5f });
 }
 
 void CubePre::Update(ComLis& list)

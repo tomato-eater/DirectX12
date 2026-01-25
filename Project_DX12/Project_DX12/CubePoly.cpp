@@ -50,14 +50,14 @@ bool CubePoly::Create(Device& devi)
 	{
 		Vertex cubeVertices[] =
 		{
-			{{-0.5f,  0.5f, -0.5f}, {1.0f, 0.0f, 0.0f, 1.0f}}, //0:左上前
-			{{ 0.5f,  0.5f, -0.5f}, {0.0f, 1.0f, 0.0f, 1.0f}}, //1:右上
-			{{-0.5f, -0.5f, -0.5f}, {0.0f, 0.0f, 1.0f, 1.0f}}, //2:左下
-			{{ 0.5f, -0.5f, -0.5f}, {1.0f, 1.0f, 0.0f, 1.0f}}, //3:右下
-			{{-0.5f,  0.5f,  0.5f}, {1.0f, 0.0f, 1.0f, 1.0f}}, //4:左上奥
-			{{ 0.5f,  0.5f,  0.5f}, {0.0f, 1.0f, 1.0f, 1.0f}}, //5:右上
-			{{-0.5f, -0.5f,  0.5f}, {1.0f, 1.0f, 1.0f, 1.0f}}, //6:左下
-			{{ 0.5f, -0.5f,  0.5f}, {0.0f, 0.0f, 0.0f, 1.0f}}  //7:右下
+			{{-0.1f,  0.1f, -0.1f}, {1.0f, 0.0f, 0.0f, 1.0f}}, //0:左上前
+			{{ 0.1f,  0.1f, -0.1f}, {0.0f, 1.0f, 0.0f, 1.0f}}, //1:右上
+			{{-0.1f, -0.1f, -0.1f}, {0.0f, 0.0f, 1.0f, 1.0f}}, //2:左下
+			{{ 0.1f, -0.1f, -0.1f}, {1.0f, 1.0f, 0.0f, 1.0f}}, //3:右下
+			{{-0.1f,  0.1f,  0.1f}, {1.0f, 0.0f, 1.0f, 1.0f}}, //4:左上奥
+			{{ 0.1f,  0.1f,  0.1f}, {0.0f, 1.0f, 1.0f, 1.0f}}, //5:右上
+			{{-0.1f, -0.1f,  0.1f}, {1.0f, 1.0f, 1.0f, 1.0f}}, //6:左下
+			{{ 0.1f, -0.1f,  0.1f}, {0.0f, 0.0f, 0.0f, 1.0f}}  //7:右下
 		};
 		auto size = sizeof(cubeVertices);
 
@@ -87,22 +87,33 @@ bool CubePoly::Create(Device& devi)
 		vertexView.SizeInBytes = size;
 		vertexView.StrideInBytes = sizeof(Vertex);
 	}
-
 	/*
 			筒
 			2, 0, 3, 1, //前面
 			7, 5,       //右面
 			6, 4,		//奥面
 			2, 0,		//左面
+
+			cube?
+			2, 0, 3, 1, //前面
+			7, 5,       //右面
+			6, 4,		//奥面
+			2, 0,		//左面
+			4, 5,		//上面
+			6, 7		//下面
 	*/
 	//インデックスデータ
 	{
+		//cube?
 		unsigned short cubeIndices[] =
 		{
-			4,5,0,1,
-			2,3,
-			6,7,
-			1,5
+			6, 4, 2, 0,
+			1, 2, 3, 
+			6, 7, 
+			4, 5,
+			0, 1,
+			5, 3, 7
+
 		};
 		auto size = sizeof(cubeIndices);
 
@@ -141,5 +152,5 @@ void CubePoly::Draw(ComLis& list)
 	list.GetList()->IASetVertexBuffers(0, 1, &vertexView);
 	list.GetList()->IASetIndexBuffer(&indexView);
 	list.GetList()->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-	list.GetList()->DrawIndexedInstanced(10, 1, 0, 0, 0);
+	list.GetList()->DrawIndexedInstanced(16, 1, 0, 0, 0);
 }

@@ -14,6 +14,7 @@ void Camera::Initialize(int wi, int hi)
 
 void Camera::Update()
 {
+	/*
 	static float angle = 0.0f;
 	if (GetAsyncKeyState('A'))
 	{
@@ -27,7 +28,7 @@ void Camera::Update()
 		position.x = destTargetToView * std::sinf(angle);
 		position.z = destTargetToView * std::cosf(angle);
 	}
-	
+	*/
 	view = DirectX::XMMatrixLookAtLH
 	(
 		DirectX::XMLoadFloat3(&position),
