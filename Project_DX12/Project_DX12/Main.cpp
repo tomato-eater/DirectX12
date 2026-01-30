@@ -16,7 +16,7 @@
 #include "CameraPre.h"
 #include "Delta.h"
 #include "Square.h"
-#include "Amo.h"
+//#include "Amo.h"
 
 #include "CubePre.h"
 
@@ -49,9 +49,9 @@ private:
 	CameraPre camera{};	//カメラ
 	Delta delta{};		//三角形　的
 	Square sqare{};		//四角形　自身
-	Amo amo{};			//四角形　弾
+	//Amo amo{};			//四角形　弾
 
-	CubePre cube{};
+	CubePre cube{};		//立方体　弾
 
 public:
 	Operations() = default;
@@ -166,8 +166,8 @@ public:
 
 			delta.Update(comLis);	//的の更新
 			sqare.Update(comLis);	//自身の更新
-			//amo.Update(comLis);		//弾の更新
 
+			//amo.Update(comLis);	//弾の更新
 			cube.Update(comLis);	//弾(立体)の更新
 
 			if (GetAsyncKeyState('B') && !fire)					//弾発射
@@ -190,14 +190,14 @@ public:
 			//プレゼント
 			swapC.GetChain()->Present(1, 0);
 
+			//Zキーで終了
+			if (GetAsyncKeyState('Z')) break;
+
 			//次のフレーム用のフェンスセット
 			fence.SetNext(comQ, idx);
 
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
-
-			//Zキーで終了
-			if (GetAsyncKeyState('Z')) break;
 		}
 	}
 };

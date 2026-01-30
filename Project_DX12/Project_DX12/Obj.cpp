@@ -2,11 +2,7 @@
 
 void Obj::Initialize(DirectX::XMFLOAT3 pos, DirectX::XMFLOAT4 col)
 {
-	x = pos.x;
-	y = pos.y;
-	z = pos.z;
-
-	world = DirectX::XMMatrixTranslation(x, y, z);
+	world = DirectX::XMMatrixTranslation(pos.x, pos.y, pos.z);
 	color = col;
 }
 
@@ -17,22 +13,44 @@ void Obj::Updata()
 	world = DirectX::XMMatrixTranslation(0.0f, std::sinf(move) * 1.5f, 0.0f);
 	color = DirectX::XMFLOAT4(0.1f, 1.0f, 1.0f, 1.0f);
 	*/
+	DirectX::XMFLOAT3 pos = {};
+
 	if (GetAsyncKeyState('A'))
-		x -= 0.01f;
+		pos.x -= 0.01f;
 	if (GetAsyncKeyState('D'))
-		x += 0.01f;
+		pos.x += 0.01f;
 
 	if (GetAsyncKeyState('Q'))
-		y -= 0.01f;
+		pos.y -= 0.01f;
 	if (GetAsyncKeyState('E'))
-		y += 0.01f;
+		pos.y += 0.01f;
 
 	if (GetAsyncKeyState('S'))
-		z -= 0.01f;
+		pos.z -= 0.01f;
 	if (GetAsyncKeyState('W'))
-		z += 0.01f;
+		pos.z += 0.01f;
 	
+	{	//ê≥ãKâª
+		float mag = 1 / sqrtf(powf(pos.x, 2) + powf(pos.y, 2) + powf(pos.z, 2));
+		if (mag > 1.0f) mag = 1.0f;
+		pos.x *= mag;
+		pos.y *= mag;
+		pos.z *= mag;
+	}
+
+	float x = DirectX::XMVectorGetX(world.r[3]) + pos.x;
+	float y = DirectX::XMVectorGetY(world.r[3]) + pos.y;
+	float z = DirectX::XMVectorGetZ(world.r[3]) + pos.z;
+
 	world = DirectX::XMMatrixTranslation(x, y, z);
+}
+
+void Obj::SetRot(int i)
+{
+	//âÒì]èàóùí«â¡ó\íË
+	float rot = DirectX::XMConvertToRadians(45.0f);
+	world = DirectX::XMMatrixRotationZ(rot) * world;
+
 }
 
 void Obj::Hit()

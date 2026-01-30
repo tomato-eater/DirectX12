@@ -6,12 +6,9 @@
 
 class Obj
 {
-	private:
-		DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
-		DirectX::XMFLOAT4 color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-		float x{};
-		float y{};
-		float z{};
+private:
+	DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
+	DirectX::XMFLOAT4 color = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 
 public:
 	struct ConstBufferData
@@ -27,9 +24,14 @@ public:
 
 	void Updata();
 
+	void SetRot(int);
+
 	void Amo()
 	{
-		z += 0.02f;
+		float x = DirectX::XMVectorGetX(world.r[3]);
+		float y = DirectX::XMVectorGetY(world.r[3]);
+		float z = DirectX::XMVectorGetZ(world.r[3]) + 0.02f;
+
 		world = DirectX::XMMatrixTranslation(x, y, z);
 	};
 
@@ -38,6 +40,5 @@ public:
 	DirectX::XMMATRIX GetWorld() { return world; }
 	DirectX::XMFLOAT4 GetColor() { return color; }
 
-	DirectX::XMFLOAT3 GetPos() { return DirectX::XMFLOAT3(x, y, z); }
 };
 
