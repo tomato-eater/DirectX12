@@ -94,6 +94,9 @@
     <Filter Include="File\Pre\Cube">
       <UniqueIdentifier>{d57e741e-3e97-42b0-a17a-16eff73e37be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File\PostProcess">
+      <UniqueIdentifier>{2b1197e3-98ec-404f-8e77-a94cc05744d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -174,7 +177,9 @@
     <ClCompile Include="CubePre.cpp">
       <Filter>File\Pre\Cube</Filter>
     </ClCompile>
-    <ClCompile Include="Blur.cpp" />
+    <ClCompile Include="PosPro.cpp">
+      <Filter>File\PostProcess</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -252,16 +257,13 @@
     <ClInclude Include="CubePre.h">
       <Filter>File\Pre\Cube</Filter>
     </ClInclude>
-    <ClInclude Include="Blur.h" />
+    <ClInclude Include="PosPro.h">
+      <Filter>File\PostProcess</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.hlsl">
       <Filter>File\HLSL</Filter>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Blur.hlsli">
-      <Filter>File\HLSL</Filter>
-    </None>
   </ItemGroup>
 </Project>

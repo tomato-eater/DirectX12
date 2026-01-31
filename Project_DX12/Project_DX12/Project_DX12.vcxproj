@@ -135,7 +135,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="Blur.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraPre.h" />
     <ClInclude Include="ComAll.h" />
@@ -153,6 +152,7 @@
     <ClInclude Include="Heap.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="PipLine.h" />
+    <ClInclude Include="PosPro.h" />
     <ClInclude Include="RootSig.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Square.h" />
@@ -166,7 +166,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Blur.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraPre.cpp" />
     <ClCompile Include="ComAll.cpp" />
@@ -185,6 +184,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="PipLine.cpp" />
+    <ClCompile Include="PosPro.cpp" />
     <ClCompile Include="RootSig.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Square.cpp" />
@@ -198,9 +198,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Blur.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

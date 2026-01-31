@@ -19,6 +19,7 @@
 //#include "Amo.h"
 
 #include "CubePre.h"
+#include "PosPro.h"
 
 class Operations
 {
@@ -52,6 +53,7 @@ private:
 	//Amo amo{};			//四角形　弾
 
 	CubePre cube{};		//立方体　弾
+	PosPro posPro{};	//フィルター
 
 public:
 	Operations() = default;
@@ -117,6 +119,8 @@ public:
 		bool fire = false;	//射撃済みかの確認用
 
 		if (camera.Create(size.first, size.second, devi, consHeap, 0)) return;	//カメラの生成
+		if (posPro.CreateResource(render, devi, descHeap)) return;		//フィルター用リソースの生成
+
 
 		if (delta.Create(devi, consHeap, 1))			return;			//的の生成
 		delta.Set({ 0.0f,  0.5f, 5.0f }, { 1.0f, 1.0f, 1.0f, 1.0f });	//的の初期位置、初期色
