@@ -6,7 +6,7 @@ void CubePre::Summon(Device& devi, Heap& heap, Obj& sqrObj, ComLis& list)
 	float y = DirectX::XMVectorGetY(sqrObj.GetWorld().r[3]);
 	float z = DirectX::XMVectorGetZ(sqrObj.GetWorld().r[3]);
 
-	for (int i = 0; i < vacants.size(); i++)
+	for (int i = 0; i < sizeof(vacants); i++)
 	{
 		if (vacants[i]) continue;
 
@@ -14,25 +14,13 @@ void CubePre::Summon(Device& devi, Heap& heap, Obj& sqrObj, ComLis& list)
 		if (pols[i].Create(devi))		assert(false && "’eƒ|ƒŠƒSƒ“ì¬[Ž¸”s[");
 		if (buffs[i].Create(devi, heap, sizeof(CubePoly::ConstBufferData), 3 + i))	assert(false && "’eƒRƒ“ƒXƒ^ƒ“ƒgƒoƒbƒtƒ@ì¬[Ž¸”s[");
 		objs[i].Initialize({ x, y , z + 0.1f }, { 0.0f, 0.0f, 1.0f, 0.5f });
-		objs[i].SetRot(1);
 		return;
 	}
-	vacants.push_back(true);
-	pols.push_back(CubePoly{});
-	buffs.push_back(ConBuffer{});
-	objs.push_back(Obj{});
-
-	if (pols.back().Create(devi))		assert(false && "’eƒ|ƒŠƒSƒ“ì¬[Ž¸”s[");
-	if (buffs.back().Create(devi, heap, sizeof(CubePoly::ConstBufferData), 3 + (UINT)(buffs.size() - 1)))	assert(false && "’eƒRƒ“ƒXƒ^ƒ“ƒgƒoƒbƒtƒ@ì¬[Ž¸”s[");
-	objs.back().Initialize({ x, y , z + 0.1f }, { 0.0f, 0.0f, 1.0f, 0.5f });
-
-	//‰ñ“]ˆ—’Ç‰Á—\’è
-	objs.back().SetRot(1);
 }
 
 void CubePre::Update(ComLis& list)
 {
-	for (int i = 0; i < vacants.size(); i++)
+	for (int i = 0; i < sizeof(vacants); i++)
 	{
 		if (!vacants[i]) continue;
 
@@ -54,10 +42,9 @@ void CubePre::Update(ComLis& list)
 
 void CubePre::Check(Obj& targetObj)
 {
-	for (int i = 0; i < vacants.size(); i++)
+	for (int i = 0; i < sizeof(vacants); i++)
 	{
 		if (!vacants[i]) continue;
-
 
 		float z = DirectX::XMVectorGetZ(objs[i].GetWorld().r[3]);
 		if (z > 8.0f) vacants[i] = false;

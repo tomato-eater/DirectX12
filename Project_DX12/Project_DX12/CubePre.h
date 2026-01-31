@@ -8,16 +8,15 @@
 #include "Heap.h"
 #include "ComLis.h"
 
-#include <vector>
 #include <math.h>
 
 class CubePre
 {
 private:
-	std::vector<bool> vacants{};
-	std::vector<CubePoly> pols{};
-	std::vector<ConBuffer> buffs{};
-	std::vector<Obj> objs{};
+	bool vacants[25]{};
+	CubePoly pols[25]{};
+	ConBuffer buffs[25]{};
+	Obj objs[25]{};
 
 	DirectX::XMFLOAT3 tPos = { 0.0f, 1.5f, 5.0f };
 	DirectX::XMFLOAT3 rPos = { 1.0f,-0.5f, 5.0f };
