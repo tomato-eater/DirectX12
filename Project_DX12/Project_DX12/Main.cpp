@@ -17,9 +17,12 @@
 #include "Delta.h"
 #include "Square.h"
 //#include "Amo.h"
-
 #include "CubePre.h"
+
 #include "PosPro.h"
+#include "ScRootSig.h"
+#include "ScShader.h"
+#include "ScPipLine.h"
 
 class Operations
 {
@@ -53,7 +56,11 @@ private:
 	//Amo amo{};			//四角形　弾
 
 	CubePre cube{};		//立方体　弾
+
 	PosPro posPro{};	//フィルター
+	ScRootSig scRootSig{};	//スクリーンルートシグネイチャー
+	ScShader scShader{};	//スクリーンシェーダー
+	ScPipLine scPipLine{};	//スクリーンパイプライン
 
 public:
 	Operations() = default;
@@ -96,7 +103,7 @@ public:
 		if (rootSig.Create(devi))			return false;
 
 		//シェーダーの生成
-		if (shader.Create(devi))			return false;
+		if (shader.Create())			return false;
 
 		//パイプラインの生成
 		if (pipLine.Create(devi, rootSig, shader))			return false;
@@ -110,6 +117,18 @@ public:
 		//デプスバッファの生成
 		if (depBuff.Create(devi, depsHeap, size.first, size.second))		return false;
 
+		//フィールター
+		if (posPro.Create(render, devi, descHeap)) return false;
+
+		//スクリーンルートシグネイチャーの生成
+		if (scRootSig.Create(devi))	return false;
+
+		//スクリーンシェーダーの生成
+		if (scShader.Create())		return false;
+
+		//スクリーンパイプラインの生成
+		if (scPipLine.Create(devi, scRootSig, scShader))	return false;
+
 		//特に問題なし！
 		return true;
 	}
@@ -118,14 +137,15 @@ public:
 	{
 		bool fire = false;	//射撃済みかの確認用
 
-		if (camera.Create(size.first, size.second, devi, consHeap, 0)) return;	//カメラの生成
-		if (posPro.CreateResource(render, devi, descHeap)) return;		//フィルター用リソースの生成
+		//if (camera.Create(size.first, size.second, devi, consHeap, 0)) return;	//カメラの生成
+		if (camera.Create(size.first, size.second, devi, posPro, 0)) return;	//カメラの生成
 
-
-		if (delta.Create(devi, consHeap, 1))			return;			//的の生成
+		//if (delta.Create(devi, consHeap, 1))			return;			//的の生成
+		if (delta.Create(devi, posPro, 1))			return;			//的の生成
 		delta.Set({ 0.0f,  0.5f, 5.0f }, { 1.0f, 1.0f, 1.0f, 1.0f });	//的の初期位置、初期色
 
-		if (sqare.Create(devi, consHeap, 2))			return;			//自身の生成
+		//if (sqare.Create(devi, consHeap, 2))			return;			//自身の生成
+		if (sqare.Create(devi, posPro, 2))			return;			//自身の生成
 		sqare.Set({ 0.0f,  0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f, 1.0f });	//自身の初期値、初期色
 
 		MSG msg{};
@@ -146,7 +166,8 @@ public:
 			comLis.Reset(comAll[idx]);
 
 			//コマンドリストのターゲットを変更
-			comLis.Chenge(render, idx, D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+			//comLis.Chenge(render, idx, D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+			comLis.Chenge(posPro, idx, D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
 
 			//ターゲットの設定
 			D3D12_CPU_DESCRIPTOR_HANDLE handles[] = { render.GetHandle(devi, descHeap, idx) };
@@ -157,13 +178,16 @@ public:
 			float backColor[] = { 0.2f, 0.2f, 0.2f, 1.0f };
 			comLis.GetList()->ClearRenderTargetView(handles[0], backColor, 0, nullptr);
 			comLis.GetList()->ClearDepthStencilView(depthHand, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
-			comLis.GetList()->SetGraphicsRootSignature(rootSig.GetSign());
+			//comLis.GetList()->SetGraphicsRootSignature(rootSig.GetSign());
+			comLis.GetList()->SetGraphicsRootSignature(scRootSig.GetSign());
 			comLis.SetVS(size.first, size.second);
 
-			ID3D12DescriptorHeap* ppHeaps[] = { consHeap.GetHeap() };
+			//ID3D12DescriptorHeap* ppHeaps[] = { consHeap.GetHeap() };
+			ID3D12DescriptorHeap* ppHeaps[] = { posPro.GetSrvHeap()};
 			comLis.GetList()->SetDescriptorHeaps(1, ppHeaps);
 
-			comLis.GetList()->SetPipelineState(pipLine.GetPip());
+			//comLis.GetList()->SetPipelineState(pipLine.GetPip());
+			comLis.GetList()->SetPipelineState(scPipLine.GetPip());
 
 			camera.Change(comLis);	//カメラの位置の変更受付
 			camera.Update();		//カメラの更新
@@ -177,14 +201,16 @@ public:
 			if (GetAsyncKeyState('B') && !fire)					//弾発射
 			{
 				//amo.Summon(devi, consHeap, sqare.GetObj(), comLis);  //2D
-				cube.Summon(devi, consHeap, sqare.GetObj(), comLis);	//3D
+				//cube.Summon(devi, consHeap, sqare.GetObj(), comLis);	//3D
+				cube.Summon(devi, posPro, sqare.GetObj(), comLis);	//3D
 				fire = true;
 			}
 			if (!GetAsyncKeyState('B') && fire) fire = false;	//発射後
 
 
 			//コマンドリストのターゲットを変更、閉鎖
-			comLis.Chenge(render, idx, D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+			//comLis.Chenge(render, idx, D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+			comLis.Chenge(posPro, idx, D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
 			comLis.GetList()->Close();
 
 			//キューにリストをセットして実行

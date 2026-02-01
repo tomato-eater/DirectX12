@@ -3,15 +3,15 @@
 #include <D3Dcompiler.h>
 #include <cassert>
 
-class Shader
+class ScShader
 {
 private:
 	ID3DBlob* vertexShader{};
 	ID3DBlob* pixelShader{};
 
 public:
-	Shader() = default;
-	~Shader();
+	ScShader() = default;
+	~ScShader();
 
 	bool Create();
 

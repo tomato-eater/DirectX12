@@ -8,6 +8,8 @@
 
 #include "ComLis.h"
 
+#include "PosPro.h"
+
 class CameraPre
 {
 private:
@@ -15,7 +17,8 @@ private:
 	ConBuffer camBuff{};//カメラバッファ
 
 public:
-	bool Create(int wi, int hi, Device& devi, Heap& cons, UINT idx);
+	//bool Create(int wi, int hi, Device& devi, Heap& cons, UINT idx);
+	bool Create(int wi, int hi, Device& devi, PosPro&, UINT idx);
 	void Change(ComLis& list);
 	void Update() { camera.Update(); }
 };

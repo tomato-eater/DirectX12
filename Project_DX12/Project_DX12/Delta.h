@@ -8,6 +8,8 @@
 #include "Heap.h"
 #include "ComLis.h"
 
+#include "PosPro.h"
+
 class Delta
 {
 private:
@@ -16,7 +18,8 @@ private:
 	Obj obj{};			//オブジェクト
 
 public:
-	bool Create(Device& devi, Heap& cons, UINT idx);
+	//bool Create(Device& devi, Heap& cons, UINT idx);
+	bool Create(Device& devi, PosPro&, UINT idx);
 	void Set(DirectX::XMFLOAT3 pos, DirectX::XMFLOAT4 color);
 	void Update(ComLis& lis);
 

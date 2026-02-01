@@ -1,6 +1,24 @@
 #include "CubePre.h"
 
-void CubePre::Summon(Device& devi, Heap& heap, Obj& sqrObj, ComLis& list)
+//void CubePre::Summon(Device& devi, Heap& heap, Obj& sqrObj, ComLis& list)
+//{
+//	float x = DirectX::XMVectorGetX(sqrObj.GetWorld().r[3]);
+//	float y = DirectX::XMVectorGetY(sqrObj.GetWorld().r[3]);
+//	float z = DirectX::XMVectorGetZ(sqrObj.GetWorld().r[3]);
+//
+//	for (int i = 0; i < sizeof(vacants); i++)
+//	{
+//		if (vacants[i]) continue;
+//
+//		vacants[i] = true;
+//		if (pols[i].Create(devi))		assert(false && "弾ポリゴン作成ー失敗ー");
+//		if (buffs[i].Create(devi, heap, sizeof(CubePoly::ConstBufferData), 3 + i))	assert(false && "弾コンスタントバッファ作成ー失敗ー");
+//		objs[i].Initialize({ x, y , z + 0.1f }, { 0.0f, 0.0f, 1.0f, 0.5f });
+//		return;
+//	}
+//}
+
+void CubePre::Summon(Device& devi, PosPro& posPro, Obj& sqrObj, ComLis& list)
 {
 	float x = DirectX::XMVectorGetX(sqrObj.GetWorld().r[3]);
 	float y = DirectX::XMVectorGetY(sqrObj.GetWorld().r[3]);
@@ -12,7 +30,7 @@ void CubePre::Summon(Device& devi, Heap& heap, Obj& sqrObj, ComLis& list)
 
 		vacants[i] = true;
 		if (pols[i].Create(devi))		assert(false && "弾ポリゴン作成ー失敗ー");
-		if (buffs[i].Create(devi, heap, sizeof(CubePoly::ConstBufferData), 3 + i))	assert(false && "弾コンスタントバッファ作成ー失敗ー");
+		if (buffs[i].Create(devi, posPro, sizeof(CubePoly::ConstBufferData), 3 + i))	assert(false && "弾コンスタントバッファ作成ー失敗ー");
 		objs[i].Initialize({ x, y , z + 0.1f }, { 0.0f, 0.0f, 1.0f, 0.5f });
 		return;
 	}

@@ -8,6 +8,8 @@
 #include "Heap.h"
 #include "ComLis.h"
 
+#include "PosPro.h"
+
 #include <math.h>
 
 class CubePre
@@ -26,7 +28,8 @@ public:
 	CubePre() = default;
 	~CubePre() = default;
 
-	void Summon(Device& devi, Heap& heap, Obj& sqrObj, ComLis& list);
+	//void Summon(Device& devi, Heap& heap, Obj& sqrObj, ComLis& list);
+	void Summon(Device& devi, PosPro&, Obj& sqrObj, ComLis& list);
 
 	void Update(ComLis& list);
 

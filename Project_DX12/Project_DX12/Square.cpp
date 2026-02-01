@@ -1,9 +1,10 @@
 #include "Square.h"
 
-bool Square::Create(Device& devi, Heap& cons, UINT idx)
+bool Square::Create(Device& devi, PosPro& posPro, UINT idx)
 {
 	if (poly.Create(devi))		return true;
-	if (buff.Create(devi, cons, sizeof(SquarePoly::ConstBufferData), idx))		return true;
+	//if (buff.Create(devi, cons, sizeof(SquarePoly::ConstBufferData), idx))		return true;
+	if (buff.Create(devi, posPro, sizeof(SquarePoly::ConstBufferData), idx))		return true;
 
 	return false;
 }

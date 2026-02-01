@@ -16,7 +16,7 @@ Shader::~Shader()
 	}
 }
 
-bool Shader::Create(Device& devi)
+bool Shader::Create()
 {
 	ID3DBlob* error{};
 

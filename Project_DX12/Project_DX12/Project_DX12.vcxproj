@@ -154,6 +154,9 @@
     <ClInclude Include="PipLine.h" />
     <ClInclude Include="PosPro.h" />
     <ClInclude Include="RootSig.h" />
+    <ClInclude Include="ScPipLine.h" />
+    <ClInclude Include="ScRootSig.h" />
+    <ClInclude Include="ScShader.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="SquarePoly.h" />
@@ -186,6 +189,9 @@
     <ClCompile Include="PipLine.cpp" />
     <ClCompile Include="PosPro.cpp" />
     <ClCompile Include="RootSig.cpp" />
+    <ClCompile Include="ScPipLine.cpp" />
+    <ClCompile Include="ScRootSig.cpp" />
+    <ClCompile Include="ScShader.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="SquarePoly.cpp" />
@@ -194,6 +200,12 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="Screen.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
     <FxCompile Include="shader.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
