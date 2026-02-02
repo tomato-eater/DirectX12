@@ -131,3 +131,10 @@ bool PosPro::Create(Target& tar, Device& devi, Heap& heap)
 
 	return false;
 }
+
+void PosPro::Draw(ComLis& comLis)
+{
+	comLis.GetList()->IASetVertexBuffers(0, 1, &bufferView);
+	comLis.GetList()->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+	comLis.GetList()->DrawInstanced(4, 1, 0, 0);
+}

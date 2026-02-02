@@ -1,17 +1,9 @@
 #include "Delta.h"
 
-//bool Delta::Create(Device& devi, Heap& cons, UINT idx)
-//{
-//	if (poly.Create(devi))		return true;
-//	if (buff.Create(devi, cons, sizeof(DeltaPoly::ConstBufferData), idx))		return true;
-//
-//	return false;
-//}
-
-bool Delta::Create(Device& devi, PosPro& posPro, UINT idx)
+bool Delta::Create(Device& devi, Heap& cons, UINT idx)
 {
 	if (poly.Create(devi))		return true;
-	if (buff.Create(devi, posPro, sizeof(DeltaPoly::ConstBufferData), idx))		return true;
+	if (buff.Create(devi, cons, sizeof(DeltaPoly::ConstBufferData), idx))		return true;
 
 	return false;
 }

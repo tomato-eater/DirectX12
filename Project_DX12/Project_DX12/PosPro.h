@@ -4,6 +4,8 @@
 #include "Device.h"
 #include "Heap.h"
 
+#include "ComLis.h"
+
 #include <DirectXMath.h>
 
 class PosPro
@@ -22,9 +24,12 @@ public:
 
 	bool Create(Target&, Device&, Heap&);
 
+	void Draw(ComLis& comLis);
+
 	ID3D12Resource* GetResource() { return screenResource; }
 	ID3D12DescriptorHeap* GetRtvHeap() { return rtvHeap; }
 	ID3D12DescriptorHeap* GetSrvHeap() { return srvHeap; }
+	D3D12_VERTEX_BUFFER_VIEW GetBuffView() { return bufferView; }
 };
 
 /*

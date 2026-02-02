@@ -20,5 +20,8 @@ float4 ps(Output input) : SV_TARGET
     float4 textureColor = tex.Sample(sample, input.uv);
     float4 finalColor = textureColor;
     
+    float gray = dot(textureColor.rgb, float3(0.299, 0.587, 0.114));
+    finalColor.rgb = gray;
+    
     return finalColor;
 }

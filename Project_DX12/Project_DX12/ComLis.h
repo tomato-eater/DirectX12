@@ -5,8 +5,6 @@
 
 #include "Target.h"
 
-#include "PosPro.h"
-
 class ComLis
 {
 private:
@@ -20,8 +18,8 @@ public:
 
 	void Reset(ComAll& comAll) { commandList->Reset(comAll.GetAll(), nullptr); }
 
-	//void Chenge(Target& tar, UINT idx, D3D12_RESOURCE_STATES from, D3D12_RESOURCE_STATES to);
-	void Chenge(PosPro& tar, UINT idx, D3D12_RESOURCE_STATES from, D3D12_RESOURCE_STATES to);
+	void Chenge(Target& tar, UINT idx, D3D12_RESOURCE_STATES from, D3D12_RESOURCE_STATES to);
+	void ScChenge(ID3D12Resource*, UINT idx, D3D12_RESOURCE_STATES from, D3D12_RESOURCE_STATES to);
 
 	ID3D12GraphicsCommandList* GetList() { return commandList; }
 

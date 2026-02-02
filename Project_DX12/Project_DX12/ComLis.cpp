@@ -21,24 +21,25 @@ bool ComLis::Create(Device& devi, ComAll& comAll)
 	return false;
 }
 
-//void ComLis::Chenge(Target& tar, UINT idx, D3D12_RESOURCE_STATES from, D3D12_RESOURCE_STATES to)
-//{
-//	D3D12_RESOURCE_BARRIER barrier{};
-//	barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
-//	barrier.Flags = D3D12_RESOURCE_BARRIER_FLAG_NONE;
-//	barrier.Transition.pResource = tar.GetTarget(idx);
-//	barrier.Transition.StateBefore = from;
-//	barrier.Transition.StateAfter = to;
-//	barrier.Transition.Subresource = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;
-//
-//	commandList->ResourceBarrier(1, &barrier);
-//}
-void ComLis::Chenge(PosPro& res, UINT idx, D3D12_RESOURCE_STATES from, D3D12_RESOURCE_STATES to)
+void ComLis::Chenge(Target& tar, UINT idx, D3D12_RESOURCE_STATES from, D3D12_RESOURCE_STATES to)
 {
 	D3D12_RESOURCE_BARRIER barrier{};
 	barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
 	barrier.Flags = D3D12_RESOURCE_BARRIER_FLAG_NONE;
-	barrier.Transition.pResource = res.GetResource();
+	barrier.Transition.pResource = tar.GetTarget(idx);
+	barrier.Transition.StateBefore = from;
+	barrier.Transition.StateAfter = to;
+	barrier.Transition.Subresource = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;
+
+	commandList->ResourceBarrier(1, &barrier);
+}
+
+void ComLis::ScChenge(ID3D12Resource* res, UINT idx, D3D12_RESOURCE_STATES from, D3D12_RESOURCE_STATES to)
+{
+	D3D12_RESOURCE_BARRIER barrier{};
+	barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
+	barrier.Flags = D3D12_RESOURCE_BARRIER_FLAG_NONE;
+	barrier.Transition.pResource = res;
 	barrier.Transition.StateBefore = from;
 	barrier.Transition.StateAfter = to;
 	barrier.Transition.Subresource = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;

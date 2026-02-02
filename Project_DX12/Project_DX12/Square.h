@@ -8,8 +8,6 @@
 #include "Heap.h"
 #include "ComLis.h"
 
-#include "PosPro.h"
-
 class Square
 {
 private:
@@ -18,8 +16,7 @@ private:
 	Obj obj{};
 
 public:
-	//bool Create(Device&, Heap&, UINT);
-	bool Create(Device&, PosPro&, UINT);
+	bool Create(Device&, Heap&, UINT);
 	void Set(DirectX::XMFLOAT3, DirectX::XMFLOAT4);
 	void Update(ComLis&);
 
