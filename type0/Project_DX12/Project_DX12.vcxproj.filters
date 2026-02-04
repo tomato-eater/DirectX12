@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="File">
+      <UniqueIdentifier>{44efc886-a4aa-4e75-8c03-10365970de23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Window">
+      <UniqueIdentifier>{38c92b04-7ac0-4789-96ed-be3ebaa8c76c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\DirectX">
+      <UniqueIdentifier>{c344641c-6330-4c13-81cc-bf19a22e5ad7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\DirectX\Device">
+      <UniqueIdentifier>{0b0afbb6-2de5-4812-827c-f28ebd972ffd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\DirectX\Factory">
+      <UniqueIdentifier>{cecd2aa5-f833-475a-9ce6-e1c9675dc5b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\DirectX\CommandGroup">
+      <UniqueIdentifier>{72f26b81-e3b3-4f41-bf0e-c04d9da0b064}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\DirectX\SwapChain">
+      <UniqueIdentifier>{a25d119d-8905-4824-9b67-beb721300287}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\DirectX\Descriptor">
+      <UniqueIdentifier>{d9b40c96-46d7-44aa-b299-45c24f16ad9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\DirectX\RenderTarget">
+      <UniqueIdentifier>{b8b2d157-f484-40d5-ab4f-b39118f1beee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\DirectX\Fence">
+      <UniqueIdentifier>{8dfaf671-9b86-4de2-a0a4-cba11078ddec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Polygon">
+      <UniqueIdentifier>{fdb3a5c3-efbe-4ac2-8fb8-e0c8775a80b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Polygon\Vertex">
+      <UniqueIdentifier>{0ce1ed70-d1bf-4284-9ad4-f9111486a97a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Polygon\Square">
+      <UniqueIdentifier>{0f5bbd7c-e45f-40e4-9041-6749aa5b5067}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\HLSL">
+      <UniqueIdentifier>{108ceda0-e0fc-4066-a707-538bddfda777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Shader">
+      <UniqueIdentifier>{b82b8064-7c35-4efd-be4e-0d9737f93603}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Shader\00">
+      <UniqueIdentifier>{df990897-b2e5-47a2-b4e6-199bb2d5f8ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\DirectX\RootSignature">
+      <UniqueIdentifier>{8ebb9cce-d5de-4bf6-ba86-5aa99868184d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>File</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>File\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp">
+      <Filter>File\DirectX\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Factory.cpp">
+      <Filter>File\DirectX\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="ComGroup.cpp">
+      <Filter>File\DirectX\CommandGroup</Filter>
+    </ClCompile>
+    <ClCompile Include="SwapChain.cpp">
+      <Filter>File\DirectX\SwapChain</Filter>
+    </ClCompile>
+    <ClCompile Include="Heap.cpp">
+      <Filter>File\DirectX\Descriptor</Filter>
+    </ClCompile>
+    <ClCompile Include="RendTarget.cpp">
+      <Filter>File\DirectX\RenderTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="Fence.cpp">
+      <Filter>File\DirectX\Fence</Filter>
+    </ClCompile>
+    <ClCompile Include="SquarePoly.cpp">
+      <Filter>File\Polygon\Square</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderNo00.cpp">
+      <Filter>File\Shader\00</Filter>
+    </ClCompile>
+    <ClCompile Include="RootSig.cpp">
+      <Filter>File\DirectX\RootSignature</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Window.h">
+      <Filter>File\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Device.h">
+      <Filter>File\DirectX\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
+      <Filter>File\DirectX\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="ComGroup.h">
+      <Filter>File\DirectX\CommandGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="SwapChain.h">
+      <Filter>File\DirectX\SwapChain</Filter>
+    </ClInclude>
+    <ClInclude Include="Heap.h">
+      <Filter>File\DirectX\Descriptor</Filter>
+    </ClInclude>
+    <ClInclude Include="RendTarget.h">
+      <Filter>File\DirectX\RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="Fence.h">
+      <Filter>File\DirectX\Fence</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>File\Polygon\Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="SquarePoly.h">
+      <Filter>File\Polygon\Square</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderNo00.h">
+      <Filter>File\Shader\00</Filter>
+    </ClInclude>
+    <ClInclude Include="RootSig.h">
+      <Filter>File\DirectX\RootSignature</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader00.hlsl">
+      <Filter>File\HLSL</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>

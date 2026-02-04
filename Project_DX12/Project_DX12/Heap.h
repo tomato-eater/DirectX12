@@ -2,11 +2,16 @@
 
 #include "Device.h"
 
+#include <vector>
+
 class Heap
 {
 private: 
 	ID3D12DescriptorHeap* heap{};
 	D3D12_DESCRIPTOR_HEAP_TYPE type{};
+
+	UINT maxCount{};
+	std::vector<UINT> freeList{};
 
 public:
 	Heap() = default;

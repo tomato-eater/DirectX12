@@ -18,6 +18,48 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ComGroup.cpp" />
+    <ClCompile Include="Device.cpp" />
+    <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="Fence.cpp" />
+    <ClCompile Include="Heap.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="RendTarget.cpp" />
+    <ClCompile Include="RootSig.cpp" />
+    <ClCompile Include="ShaderNo00.cpp" />
+    <ClCompile Include="SquarePoly.cpp" />
+    <ClCompile Include="SwapChain.cpp" />
+    <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ComGroup.h" />
+    <ClInclude Include="Device.h" />
+    <ClInclude Include="Factory.h" />
+    <ClInclude Include="Fence.h" />
+    <ClInclude Include="Heap.h" />
+    <ClInclude Include="RendTarget.h" />
+    <ClInclude Include="RootSig.h" />
+    <ClInclude Include="ShaderNo00.h" />
+    <ClInclude Include="SquarePoly.h" />
+    <ClInclude Include="SwapChain.h" />
+    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader00.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </EntryPointName>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -130,73 +172,6 @@
       <PreventDllBinding>true</PreventDllBinding>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Amo.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="CameraPre.h" />
-    <ClInclude Include="ComAll.h" />
-    <ClInclude Include="ComLis.h" />
-    <ClInclude Include="ComQue.h" />
-    <ClInclude Include="ConBuffer.h" />
-    <ClInclude Include="CubePoly.h" />
-    <ClInclude Include="CubePre.h" />
-    <ClInclude Include="Delta.h" />
-    <ClInclude Include="DeltaPoly.h" />
-    <ClInclude Include="DepBuffer.h" />
-    <ClInclude Include="Device.h" />
-    <ClInclude Include="Fac_Ada.h" />
-    <ClInclude Include="Fence.h" />
-    <ClInclude Include="Heap.h" />
-    <ClInclude Include="Obj.h" />
-    <ClInclude Include="PipLine.h" />
-    <ClInclude Include="RootSig.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="Square.h" />
-    <ClInclude Include="SquarePoly.h" />
-    <ClInclude Include="SwapC.h" />
-    <ClInclude Include="Target.h" />
-    <ClInclude Include="Window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Amo.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CameraPre.cpp" />
-    <ClCompile Include="ComAll.cpp" />
-    <ClCompile Include="ComLis.cpp" />
-    <ClCompile Include="ComQue.cpp" />
-    <ClCompile Include="ConBuffer.cpp" />
-    <ClCompile Include="CubePoly.cpp" />
-    <ClCompile Include="CubePre.cpp" />
-    <ClCompile Include="Delta.cpp" />
-    <ClCompile Include="DeltaPoly.cpp" />
-    <ClCompile Include="DepBuffer.cpp" />
-    <ClCompile Include="Device.cpp" />
-    <ClCompile Include="Fac_Ada.cpp" />
-    <ClCompile Include="Fence.cpp" />
-    <ClCompile Include="Heap.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Obj.cpp" />
-    <ClCompile Include="PipLine.cpp" />
-    <ClCompile Include="RootSig.cpp" />
-    <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="Square.cpp" />
-    <ClCompile Include="SquarePoly.cpp" />
-    <ClCompile Include="SwapC.cpp" />
-    <ClCompile Include="Target.cpp" />
-    <ClCompile Include="Window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="shader.hlsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </FxCompile>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

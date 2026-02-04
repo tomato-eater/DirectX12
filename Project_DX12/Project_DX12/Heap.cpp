@@ -23,6 +23,10 @@ bool Heap::Create(Device& devi, D3D12_DESCRIPTOR_HEAP_TYPE setType, UINT num, bo
 		assert(false && "ディスクリプタヒープ生成ー失敗ー");
 		return true;
 	}
+
+	maxCount = num;
+	for (int i = 0; i < maxCount; i++)
+		freeList.push_back(i);
 	
 	return false;
 }

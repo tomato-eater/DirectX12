@@ -19,11 +19,6 @@
 //#include "Amo.h"
 #include "CubePre.h"
 
-#include "PosPro.h"
-#include "ScRootSig.h"
-#include "ScShader.h"
-#include "ScPipLine.h"
-
 class Operations
 {
 private:
@@ -56,11 +51,6 @@ private:
 	//Amo amo{};			//四角形　弾
 
 	CubePre cube{};		//立方体　弾
-
-	PosPro posPro{};	//フィルター
-	ScRootSig scRootSig{};	//スクリーンルートシグネイチャー
-	ScShader scShader{};	//スクリーンシェーダー
-	ScPipLine scPipLine{};	//スクリーンパイプライン
 
 public:
 	Operations() = default;
@@ -116,18 +106,6 @@ public:
 
 		//デプスバッファの生成
 		if (depBuff.Create(devi, depsHeap, size.first, size.second))		return false;
-
-		//フィールター
-		if (posPro.Create(render, devi, descHeap)) return false;
-
-		//スクリーンルートシグネイチャーの生成
-		if (scRootSig.Create(devi))	return false;
-
-		//スクリーンシェーダーの生成
-		if (scShader.Create())		return false;
-
-		//スクリーンパイプラインの生成
-		if (scPipLine.Create(devi, scRootSig, scShader))	return false;
 
 		//特に問題なし！
 		return true;
@@ -200,37 +178,6 @@ public:
 			if (!GetAsyncKeyState('B') && fire) fire = false;	//発射後
 
 
-			{//フィルター処理へ
-				comLis.ScChenge(posPro.GetResource(), idx, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE, D3D12_RESOURCE_STATE_RENDER_TARGET);
-
-				D3D12_CPU_DESCRIPTOR_HANDLE scRtvHand[] = { posPro.GetRtvHeap()->GetCPUDescriptorHandleForHeapStart() };
-				auto scDsvHand = depBuff.GetHandle();
-				comLis.GetList()->OMSetRenderTargets(1, scRtvHand, false, &scDsvHand);
-
-				float scBackColor[] = { 0.0f, 0.0f, 0.0f, 1.0f };
-				comLis.GetList()->ClearRenderTargetView(scRtvHand[0], scBackColor, 0, nullptr);
-
-				auto rtvHeap = descHeap.GetHeap()->GetCPUDescriptorHandleForHeapStart();
-				rtvHeap.ptr += idx * devi.GetDev()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
-
-				comLis.GetList()->OMSetRenderTargets(1, &rtvHeap, false, nullptr);
-				comLis.GetList()->ClearRenderTargetView(rtvHeap, scBackColor, 0, nullptr);
-
-				comLis.SetVS(size.first, size.second);
-
-				comLis.GetList()->SetPipelineState(scPipLine.GetPip());
-				comLis.GetList()->SetGraphicsRootSignature(scRootSig.GetSign());
-
-				//ID3D12DescriptorHeap* posSrvHeap[] = { posPro.GetSrvHeap() };
-				//comLis.GetList()->SetDescriptorHeaps(1, posSrvHeap);
-
-				auto gpuHandle = posPro.GetSrvHeap()->GetGPUDescriptorHandleForHeapStart();
-				comLis.GetList()->SetGraphicsRootDescriptorTable(0, gpuHandle);
-
-				//全画面にフィルター四角形を描画
-				posPro.Draw(comLis);
-			}
-			
 			//レンダーターゲットをプレゼント用に変更
 			comLis.Chenge(render, idx, D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
 			//コマンドリストのクローズ

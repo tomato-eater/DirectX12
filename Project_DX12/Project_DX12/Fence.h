@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Device.h"
 #include "ComQue.h"
 
 class Fence

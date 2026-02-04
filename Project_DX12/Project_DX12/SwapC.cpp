@@ -11,7 +11,6 @@ SwapC::~SwapC()
 
 bool SwapC::Create(Window& win, Fac_Ada& f_a, ComQue& comQ, int wi, int hi)
 {
-	chainDesc = {};
 	chainDesc.BufferCount = 2;
 	chainDesc.Width = wi;
 	chainDesc.Height = hi;

@@ -97,18 +97,6 @@
     <Filter Include="File\Filter">
       <UniqueIdentifier>{e61cbef5-eb30-4895-a8a4-4ef560787bdb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="File\Filter\PostProcess">
-      <UniqueIdentifier>{2b1197e3-98ec-404f-8e77-a94cc05744d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File\Filter\PipLine">
-      <UniqueIdentifier>{c1bf4ae6-4a3f-4886-817c-7365ca097f33}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File\Filter\RootSig">
-      <UniqueIdentifier>{7d69b013-69a6-47f0-a6f0-7d32a663e506}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File\Filter\Shader">
-      <UniqueIdentifier>{5a4a30ba-08cf-43b9-bf34-3f6362eea88f}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -189,18 +177,6 @@
     <ClCompile Include="CubePre.cpp">
       <Filter>File\Pre\Cube</Filter>
     </ClCompile>
-    <ClCompile Include="PosPro.cpp">
-      <Filter>File\Filter\PostProcess</Filter>
-    </ClCompile>
-    <ClCompile Include="ScRootSig.cpp">
-      <Filter>File\Filter\RootSig</Filter>
-    </ClCompile>
-    <ClCompile Include="ScPipLine.cpp">
-      <Filter>File\Filter\PipLine</Filter>
-    </ClCompile>
-    <ClCompile Include="ScShader.cpp">
-      <Filter>File\Filter\Shader</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -278,24 +254,9 @@
     <ClInclude Include="CubePre.h">
       <Filter>File\Pre\Cube</Filter>
     </ClInclude>
-    <ClInclude Include="PosPro.h">
-      <Filter>File\Filter\PostProcess</Filter>
-    </ClInclude>
-    <ClInclude Include="ScRootSig.h">
-      <Filter>File\Filter\RootSig</Filter>
-    </ClInclude>
-    <ClInclude Include="ScPipLine.h">
-      <Filter>File\Filter\PipLine</Filter>
-    </ClInclude>
-    <ClInclude Include="ScShader.h">
-      <Filter>File\Filter\Shader</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.hlsl">
-      <Filter>File\HLSL</Filter>
-    </FxCompile>
-    <FxCompile Include="Screen.hlsl">
       <Filter>File\HLSL</Filter>
     </FxCompile>
   </ItemGroup>

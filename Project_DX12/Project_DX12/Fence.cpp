@@ -40,6 +40,5 @@ void Fence::Check(UINT idx)
 void Fence::SetNext(ComQue& comQue, UINT idx)
 {
 	comQue.GetQ()->Signal(fence, nextV);
-	value[idx] = nextV;
-	nextV++;
+	value[idx] = nextV++;
 }

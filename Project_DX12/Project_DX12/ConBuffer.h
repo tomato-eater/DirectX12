@@ -3,8 +3,6 @@
 #include "Device.h"
 #include "Heap.h"
 
-#include "PosPro.h"
-
 class ConBuffer
 {
 private:
