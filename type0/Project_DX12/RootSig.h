@@ -6,16 +6,16 @@
 class RootSig
 {
 private:
-	ID3D12RootSignature* rootShignature{};//ルートシグネイチャー
+	ID3D12RootSignature* rootShignature{};//ルートシグネチャー
 
 public:
 	RootSig() = default;//コンストラクタ
 	~RootSig();			//デストラクタ
 
-	//ルートシグネイチャーの作成
+	//ルートシグネチャーの作成
 	bool Create(ID3D12Device*);
 
-	//ルートシグネイチャーの取得
+	//ルートシグネチャーの取得
 	ID3D12RootSignature* Get() { return rootShignature; }
 };
 

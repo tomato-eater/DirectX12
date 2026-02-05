@@ -22,4 +22,3 @@ public:
 	//HWND�̎擾
 	HWND GetHWND() const { return handle; }
 };
-

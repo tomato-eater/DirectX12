@@ -1,13 +1,8 @@
 #pragma once
-
 #include <DirectXMath.h>
 #include <d3d12.h>
 
-class VertexTemp
-{
-public:
-	VertexTemp() = default;
-	~VertexTemp() = default;
+namespace {
 	//À•W‚ÆF‚ğ‹L‰¯‚·‚é‚â‚Â
 	struct Vertex
 	{
@@ -46,4 +41,4 @@ public:
 
 		return desc;
 	}
-};
+}

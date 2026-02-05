@@ -6,8 +6,11 @@
 #include "Heap.h"
 #include "RendTarget.h"
 #include "Fence.h"
+#include "Shader.h"
+#include "RootSig.h"
+#include "PipLine.h"
+
 #include "SquarePoly.h"
-#include "ShaderNo00.h"
 
 class Operations
 {
@@ -21,8 +24,13 @@ private:
 	Heap descripHeapRTV;//ディスクリプタヒープクラス
 	RendTarget render;	//レンダ―ターゲットクラス
 	Fence fence;		//フェンスクラス
+	RootSig rootShig;	//ルートシグネチャークラス
+	PipLine pipLine;	//パイプラインステートクラス
+
 	SquarePoly square;	//四角形ポリゴンクラス
-	ShaderNo00 shader00;//シェーダー00クラス
+
+
+	Shader sha00;//シェーダー00クラス
 
 public:
 	Operations() = default;	//コンストラクタ
@@ -59,7 +67,13 @@ public:
 		if (square.Create(device.Get()))	return false;
 
 		//シェーダー00の作成
-		if (shader00.Create())		return false;
+		if (sha00.Create("Shader00.hlsl"))		return false;
+
+		//ルートシグネチャーの作成
+		if (rootShig.Create(device.Get()))		return false;
+
+		//パイプラインステートの作成
+		if (pipLine.Create(V00(), device.Get(), rootShig.Get(), sha00.VS(), sha00.PS(), 2, true))	return false;
 
 		//No abnormalitys
 		return true;

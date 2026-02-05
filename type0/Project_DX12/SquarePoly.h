@@ -24,4 +24,3 @@ public:
 	//•`‰æ
 	void Drow(ID3D12GraphicsCommandList*);
 };
-

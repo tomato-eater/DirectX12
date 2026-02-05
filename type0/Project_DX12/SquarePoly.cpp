@@ -1,5 +1,6 @@
 #include "SquarePoly.h"
 
+//デストラクタ
 SquarePoly::~SquarePoly()
 {
 	if (indexBuffer)
@@ -19,7 +20,7 @@ bool SquarePoly::Create(ID3D12Device* device)
 {
 	//頂点
 	{
-		VertexTemp::Vertex vertices[] = //座標と色
+		Vertex vertices[] = //座標と色
 		{
 			{{-1.0f, 1.0f, 0.0f},{0.0f,0.0f}},
 			{{ 1.0f, 1.0f, 0.0f},{1.0f,0.0f}},
@@ -28,8 +29,8 @@ bool SquarePoly::Create(ID3D12Device* device)
 		};
 		auto size = sizeof(vertices);
 
-		auto heap = VertexTemp::SetHeap();
-		auto desc = VertexTemp::SetDesc(size);
+		auto heap = SetHeap();
+		auto desc = SetDesc(size);
 
 		//リソース作成
 		if (device->CreateCommittedResource(
@@ -45,7 +46,7 @@ bool SquarePoly::Create(ID3D12Device* device)
 		}
 
 		//マップの確認
-		VertexTemp::Vertex* data{};
+		Vertex* data{};
 		vertexBuffer->Map(0, nullptr, reinterpret_cast<void**>(&data));
 		if (!data) {
 			assert(false && "頂点バッファのマップー失敗ー");
@@ -57,7 +58,7 @@ bool SquarePoly::Create(ID3D12Device* device)
 		//成功したデータをぶち込む
 		vertexView.BufferLocation = vertexBuffer->GetGPUVirtualAddress();
 		vertexView.SizeInBytes = size;
-		vertexView.StrideInBytes = sizeof(VertexTemp::Vertex);
+		vertexView.StrideInBytes = sizeof(Vertex);
 	}
 
 	//インデックス
@@ -66,8 +67,8 @@ bool SquarePoly::Create(ID3D12Device* device)
 		unsigned short indices[] = { 0,1,2,3 };
 		indexSize = sizeof(indices);
 
-		auto heap = VertexTemp::SetHeap();
-		auto desc = VertexTemp::SetDesc(indexSize);
+		auto heap = SetHeap();
+		auto desc = SetDesc(indexSize);
 
 		//リソースの作成
 		if (device->CreateCommittedResource(

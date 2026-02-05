@@ -25,9 +25,10 @@
     <ClCompile Include="Fence.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PipLine.cpp" />
     <ClCompile Include="RendTarget.cpp" />
     <ClCompile Include="RootSig.cpp" />
-    <ClCompile Include="ShaderNo00.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SquarePoly.cpp" />
     <ClCompile Include="SwapChain.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -38,11 +39,13 @@
     <ClInclude Include="Factory.h" />
     <ClInclude Include="Fence.h" />
     <ClInclude Include="Heap.h" />
+    <ClInclude Include="PipLine.h" />
     <ClInclude Include="RendTarget.h" />
     <ClInclude Include="RootSig.h" />
-    <ClInclude Include="ShaderNo00.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="SquarePoly.h" />
     <ClInclude Include="SwapChain.h" />
+    <ClInclude Include="Temp.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -146,7 +149,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -162,7 +165,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

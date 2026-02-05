@@ -1,9 +1,9 @@
-#include "ShaderNo00.h"
+#include "Shader.h"
 
 #pragma comment(lib, "d3dcompiler.lib")
 
 //デストラクタ
-ShaderNo00::~ShaderNo00()
+Shader::~Shader()
 {
 	if (vs)
 	{
@@ -18,24 +18,27 @@ ShaderNo00::~ShaderNo00()
 }
 
 //シェーダーの読み込み
-bool ShaderNo00::Create()
+bool Shader::Create(std::string name)
 {
 	ID3DBlob* error{};
+	const std::wstring temp = std::wstring(name.begin(), name.end());
 
 	//頂点シェーダー
-	auto hr = D3DCompileFromFile(L"Shader00.hlsl", nullptr, nullptr, "vs", "vs_5_0", D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION, 0, &vs, &error);
+	auto hr = D3DCompileFromFile(temp.data(), nullptr, nullptr, "vs", "vs_5_0", D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION, 0, &vs, &error);
 	if (FAILED(hr))
 	{
 		char* p = static_cast<char*>(error->GetBufferPointer());
 		assert(false && "頂点シェーダコンパイルー失敗ー");
+		return true;
 	}
 
 	//ピクセルシェーダー
-	hr = D3DCompileFromFile(L"Shader00.hlsl", nullptr, nullptr, "ps", "ps_5_0", D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION, 0, &ps, &error);
+	hr = D3DCompileFromFile(temp.data(), nullptr, nullptr, "ps", "ps_5_0", D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION, 0, &ps, &error);
 	if (FAILED(hr))
 	{
 		char* p = static_cast<char*>(error->GetBufferPointer());
 		assert(false && "ピクセルシェーダコンパイルー失敗ー");
+		return true;
 	}
 
 	if (error) error->Release();

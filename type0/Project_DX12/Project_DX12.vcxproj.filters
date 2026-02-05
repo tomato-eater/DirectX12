@@ -46,11 +46,11 @@
     <Filter Include="File\Shader">
       <UniqueIdentifier>{b82b8064-7c35-4efd-be4e-0d9737f93603}</UniqueIdentifier>
     </Filter>
-    <Filter Include="File\Shader\00">
-      <UniqueIdentifier>{df990897-b2e5-47a2-b4e6-199bb2d5f8ed}</UniqueIdentifier>
-    </Filter>
     <Filter Include="File\DirectX\RootSignature">
       <UniqueIdentifier>{8ebb9cce-d5de-4bf6-ba86-5aa99868184d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\DirectX\PipLine">
+      <UniqueIdentifier>{4ff99b00-9497-4c5c-9e58-9326235a411b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -84,11 +84,14 @@
     <ClCompile Include="SquarePoly.cpp">
       <Filter>File\Polygon\Square</Filter>
     </ClCompile>
-    <ClCompile Include="ShaderNo00.cpp">
-      <Filter>File\Shader\00</Filter>
-    </ClCompile>
     <ClCompile Include="RootSig.cpp">
       <Filter>File\DirectX\RootSignature</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>File\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="PipLine.cpp">
+      <Filter>File\DirectX\PipLine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,11 +125,17 @@
     <ClInclude Include="SquarePoly.h">
       <Filter>File\Polygon\Square</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderNo00.h">
-      <Filter>File\Shader\00</Filter>
-    </ClInclude>
     <ClInclude Include="RootSig.h">
       <Filter>File\DirectX\RootSignature</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>File\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="PipLine.h">
+      <Filter>File\DirectX\PipLine</Filter>
+    </ClInclude>
+    <ClInclude Include="Temp.h">
+      <Filter>File\DirectX\PipLine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
