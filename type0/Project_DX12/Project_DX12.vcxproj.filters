@@ -52,94 +52,103 @@
     <Filter Include="File\DirectX\PipLine">
       <UniqueIdentifier>{4ff99b00-9497-4c5c-9e58-9326235a411b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File\Texture">
+      <UniqueIdentifier>{f21b7e41-f1a7-4988-8e66-be8e84f66f89}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="Code\Window.cpp">
+      <Filter>File\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Shader.cpp">
+      <Filter>File\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\SquarePoly.cpp">
+      <Filter>File\Polygon\Square</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Main.cpp">
       <Filter>File</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>File\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Device.cpp">
-      <Filter>File\DirectX\Device</Filter>
-    </ClCompile>
-    <ClCompile Include="Factory.cpp">
-      <Filter>File\DirectX\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="ComGroup.cpp">
+    <ClCompile Include="Code\ComGroup.cpp">
       <Filter>File\DirectX\CommandGroup</Filter>
     </ClCompile>
-    <ClCompile Include="SwapChain.cpp">
-      <Filter>File\DirectX\SwapChain</Filter>
+    <ClCompile Include="Code\Device.cpp">
+      <Filter>File\DirectX\Device</Filter>
     </ClCompile>
-    <ClCompile Include="Heap.cpp">
-      <Filter>File\DirectX\Descriptor</Filter>
+    <ClCompile Include="Code\Factory.cpp">
+      <Filter>File\DirectX\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="RendTarget.cpp">
-      <Filter>File\DirectX\RenderTarget</Filter>
-    </ClCompile>
-    <ClCompile Include="Fence.cpp">
+    <ClCompile Include="Code\Fence.cpp">
       <Filter>File\DirectX\Fence</Filter>
     </ClCompile>
-    <ClCompile Include="SquarePoly.cpp">
-      <Filter>File\Polygon\Square</Filter>
+    <ClCompile Include="Code\Heap.cpp">
+      <Filter>File\DirectX\Descriptor</Filter>
     </ClCompile>
-    <ClCompile Include="RootSig.cpp">
+    <ClCompile Include="Code\PipLine.cpp">
+      <Filter>File\DirectX\PipLine</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\RendTarget.cpp">
+      <Filter>File\DirectX\RenderTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\RootSig.cpp">
       <Filter>File\DirectX\RootSignature</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>File\Shader</Filter>
+    <ClCompile Include="Code\SwapChain.cpp">
+      <Filter>File\DirectX\SwapChain</Filter>
     </ClCompile>
-    <ClCompile Include="PipLine.cpp">
-      <Filter>File\DirectX\PipLine</Filter>
+    <ClCompile Include="Code\TextureBuff.cpp">
+      <Filter>File\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.h">
+    <ClInclude Include="Code\Window.h">
       <Filter>File\Window</Filter>
     </ClInclude>
-    <ClInclude Include="Device.h">
-      <Filter>File\DirectX\Device</Filter>
+    <ClInclude Include="Code\Shader.h">
+      <Filter>File\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="Factory.h">
-      <Filter>File\DirectX\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="ComGroup.h">
-      <Filter>File\DirectX\CommandGroup</Filter>
-    </ClInclude>
-    <ClInclude Include="SwapChain.h">
-      <Filter>File\DirectX\SwapChain</Filter>
-    </ClInclude>
-    <ClInclude Include="Heap.h">
-      <Filter>File\DirectX\Descriptor</Filter>
-    </ClInclude>
-    <ClInclude Include="RendTarget.h">
-      <Filter>File\DirectX\RenderTarget</Filter>
-    </ClInclude>
-    <ClInclude Include="Fence.h">
-      <Filter>File\DirectX\Fence</Filter>
-    </ClInclude>
-    <ClInclude Include="Vertex.h">
+    <ClInclude Include="Code\Vertex.h">
       <Filter>File\Polygon\Vertex</Filter>
     </ClInclude>
-    <ClInclude Include="SquarePoly.h">
+    <ClInclude Include="Code\SquarePoly.h">
       <Filter>File\Polygon\Square</Filter>
     </ClInclude>
-    <ClInclude Include="RootSig.h">
+    <ClInclude Include="Code\ComGroup.h">
+      <Filter>File\DirectX\CommandGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Device.h">
+      <Filter>File\DirectX\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Factory.h">
+      <Filter>File\DirectX\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Fence.h">
+      <Filter>File\DirectX\Fence</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Heap.h">
+      <Filter>File\DirectX\Descriptor</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\PipLine.h">
+      <Filter>File\DirectX\PipLine</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\RendTarget.h">
+      <Filter>File\DirectX\RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\RootSig.h">
       <Filter>File\DirectX\RootSignature</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>File\Shader</Filter>
+    <ClInclude Include="Code\SwapChain.h">
+      <Filter>File\DirectX\SwapChain</Filter>
     </ClInclude>
-    <ClInclude Include="PipLine.h">
+    <ClInclude Include="Code\PipTemp.h">
       <Filter>File\DirectX\PipLine</Filter>
     </ClInclude>
-    <ClInclude Include="Temp.h">
-      <Filter>File\DirectX\PipLine</Filter>
+    <ClInclude Include="Code\TextureBuff.h">
+      <Filter>File\Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Shader00.hlsl">
+    <FxCompile Include="Code\HLSL\Shader00.hlsl">
       <Filter>File\HLSL</Filter>
     </FxCompile>
   </ItemGroup>
