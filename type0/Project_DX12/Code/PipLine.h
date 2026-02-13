@@ -1,23 +1,23 @@
 #pragma once
-#include <cassert>
 
 #include "PipTemp.h"
 
-#include <utility>
+#include <wrl/client.h>
 
 class PipLine
 {
 private:
-	ID3D12PipelineState* pipLineState{};	//パイプラインステート
+	Microsoft::WRL::ComPtr<ID3D12PipelineState> pipLineState{};	//パイプラインステート
 
 public:
-	PipLine() = default;	//コンストラクタ
-	~PipLine();				//デストラクタ
+	//コンストラクタ　デストラクタ
+	PipLine() = default;
+	~PipLine() = default;
 
 	//パイプラインステートの作成
-	bool Create(int, ID3D12Device*, ID3D12RootSignature*, ID3DBlob*, ID3DBlob*, int, bool);
+	bool Create(ID3D12RootSignature*, ID3D10Blob*, ID3D10Blob*, bool, VerLay);
 
 	//パイプラインステートの取得
-	ID3D12PipelineState* Get() { return pipLineState; }
+	ID3D12PipelineState* Get() { return pipLineState.Get(); }
 };
 

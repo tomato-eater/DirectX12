@@ -21,9 +21,9 @@ public:
 	bool Create(std::string, ID3D12Device*);
 
 	//シェーダーリソースビューの作成
-	void SetSRV(ID3D12DescriptorHeap*, ID3D12Device*);
+	void Set(ID3D12DescriptorHeap*, ID3D12Device*);
 
 	//バッファの取得
-	ID3D12Resource* Get() { return texResource; }
+	ID3D12Resource* GetRes() { return texResource; }
 };
 

@@ -10,35 +10,17 @@
     <Filter Include="File\DirectX">
       <UniqueIdentifier>{c344641c-6330-4c13-81cc-bf19a22e5ad7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="File\DirectX\Device">
-      <UniqueIdentifier>{0b0afbb6-2de5-4812-827c-f28ebd972ffd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File\DirectX\Factory">
-      <UniqueIdentifier>{cecd2aa5-f833-475a-9ce6-e1c9675dc5b9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="File\DirectX\CommandGroup">
       <UniqueIdentifier>{72f26b81-e3b3-4f41-bf0e-c04d9da0b064}</UniqueIdentifier>
     </Filter>
     <Filter Include="File\DirectX\SwapChain">
       <UniqueIdentifier>{a25d119d-8905-4824-9b67-beb721300287}</UniqueIdentifier>
     </Filter>
-    <Filter Include="File\DirectX\Descriptor">
-      <UniqueIdentifier>{d9b40c96-46d7-44aa-b299-45c24f16ad9e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="File\DirectX\RenderTarget">
       <UniqueIdentifier>{b8b2d157-f484-40d5-ab4f-b39118f1beee}</UniqueIdentifier>
     </Filter>
     <Filter Include="File\DirectX\Fence">
       <UniqueIdentifier>{8dfaf671-9b86-4de2-a0a4-cba11078ddec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File\Polygon">
-      <UniqueIdentifier>{fdb3a5c3-efbe-4ac2-8fb8-e0c8775a80b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File\Polygon\Vertex">
-      <UniqueIdentifier>{0ce1ed70-d1bf-4284-9ad4-f9111486a97a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File\Polygon\Square">
-      <UniqueIdentifier>{0f5bbd7c-e45f-40e4-9041-6749aa5b5067}</UniqueIdentifier>
     </Filter>
     <Filter Include="File\HLSL">
       <UniqueIdentifier>{108ceda0-e0fc-4066-a707-538bddfda777}</UniqueIdentifier>
@@ -55,6 +37,54 @@
     <Filter Include="File\Texture">
       <UniqueIdentifier>{f21b7e41-f1a7-4988-8e66-be8e84f66f89}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File\DirectX\DXGI">
+      <UniqueIdentifier>{452f6ee5-fdc3-4daf-abfb-c1aa5dc3cb0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\DirectX\Device">
+      <UniqueIdentifier>{0b0afbb6-2de5-4812-827c-f28ebd972ffd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\DirectX\Heap">
+      <UniqueIdentifier>{d9b40c96-46d7-44aa-b299-45c24f16ad9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\ObjectSet">
+      <UniqueIdentifier>{1b6c5469-135e-4c75-92b1-83d454ea433e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\ObjectSet\Image">
+      <UniqueIdentifier>{d396eed3-741d-4408-a360-38c097c84fdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\ObjectSet\ObjManager">
+      <UniqueIdentifier>{6b284b51-b644-4dc5-b0bb-b4b6d787c7b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\ObjectSet\Object">
+      <UniqueIdentifier>{96a2d655-33b8-4e01-9719-677783c68271}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\ObjectSet\ObjCont">
+      <UniqueIdentifier>{b69a62c5-21bf-4e30-95da-8b17e7bcb068}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\ObjectSet\Polygon">
+      <UniqueIdentifier>{fdb3a5c3-efbe-4ac2-8fb8-e0c8775a80b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\ObjectSet\Polygon\Temp">
+      <UniqueIdentifier>{0ce1ed70-d1bf-4284-9ad4-f9111486a97a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\ObjectSet\Polygon\Screen">
+      <UniqueIdentifier>{4f3c7675-0031-43da-be34-946493ed0ad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\ObjectSet\ConstantBuffer">
+      <UniqueIdentifier>{f87cac0b-e094-46c2-9168-c69778132d2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\Texture\Square">
+      <UniqueIdentifier>{0f5bbd7c-e45f-40e4-9041-6749aa5b5067}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\ObjectSet\Camera">
+      <UniqueIdentifier>{2424518d-082a-46da-a875-1f2394a211bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\ObjectSet\Object\Temp">
+      <UniqueIdentifier>{a3fe1b05-2cb6-44e7-a0a2-c738ac277968}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\ObjectSet\Polygon\Delta">
+      <UniqueIdentifier>{2e663929-0cc5-470b-b587-854676e70f9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Window.cpp">
@@ -63,8 +93,8 @@
     <ClCompile Include="Code\Shader.cpp">
       <Filter>File\Shader</Filter>
     </ClCompile>
-    <ClCompile Include="Code\SquarePoly.cpp">
-      <Filter>File\Polygon\Square</Filter>
+    <ClCompile Include="Code\TestSquarePoly.cpp">
+      <Filter>File\Texture\Square</Filter>
     </ClCompile>
     <ClCompile Include="Code\Main.cpp">
       <Filter>File</Filter>
@@ -75,14 +105,11 @@
     <ClCompile Include="Code\Device.cpp">
       <Filter>File\DirectX\Device</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Factory.cpp">
-      <Filter>File\DirectX\Factory</Filter>
-    </ClCompile>
     <ClCompile Include="Code\Fence.cpp">
       <Filter>File\DirectX\Fence</Filter>
     </ClCompile>
     <ClCompile Include="Code\Heap.cpp">
-      <Filter>File\DirectX\Descriptor</Filter>
+      <Filter>File\DirectX\Heap</Filter>
     </ClCompile>
     <ClCompile Include="Code\PipLine.cpp">
       <Filter>File\DirectX\PipLine</Filter>
@@ -96,8 +123,32 @@
     <ClCompile Include="Code\SwapChain.cpp">
       <Filter>File\DirectX\SwapChain</Filter>
     </ClCompile>
+    <ClCompile Include="Code\TextureData.cpp">
+      <Filter>File\Texture</Filter>
+    </ClCompile>
     <ClCompile Include="Code\TextureBuff.cpp">
       <Filter>File\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DXGI.cpp">
+      <Filter>File\DirectX\DXGI</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\ImagePre.cpp">
+      <Filter>File\ObjectSet\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\ConsBuffer.cpp">
+      <Filter>File\ObjectSet\ConstantBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\ObjManager.cpp">
+      <Filter>File\ObjectSet\ObjManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\PolyTemp.cpp">
+      <Filter>File\ObjectSet\Polygon\Temp</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\DeltaPoly.cpp">
+      <Filter>File\ObjectSet\Polygon\Delta</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\ObjTemp.cpp">
+      <Filter>File\ObjectSet\Object\Temp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,11 +158,8 @@
     <ClInclude Include="Code\Shader.h">
       <Filter>File\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Vertex.h">
-      <Filter>File\Polygon\Vertex</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\SquarePoly.h">
-      <Filter>File\Polygon\Square</Filter>
+    <ClInclude Include="Code\TestSquarePoly.h">
+      <Filter>File\Texture\Square</Filter>
     </ClInclude>
     <ClInclude Include="Code\ComGroup.h">
       <Filter>File\DirectX\CommandGroup</Filter>
@@ -119,14 +167,11 @@
     <ClInclude Include="Code\Device.h">
       <Filter>File\DirectX\Device</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Factory.h">
-      <Filter>File\DirectX\Factory</Filter>
-    </ClInclude>
     <ClInclude Include="Code\Fence.h">
       <Filter>File\DirectX\Fence</Filter>
     </ClInclude>
     <ClInclude Include="Code\Heap.h">
-      <Filter>File\DirectX\Descriptor</Filter>
+      <Filter>File\DirectX\Heap</Filter>
     </ClInclude>
     <ClInclude Include="Code\PipLine.h">
       <Filter>File\DirectX\PipLine</Filter>
@@ -143,8 +188,35 @@
     <ClInclude Include="Code\PipTemp.h">
       <Filter>File\DirectX\PipLine</Filter>
     </ClInclude>
+    <ClInclude Include="Code\TextureData.h">
+      <Filter>File\Texture</Filter>
+    </ClInclude>
     <ClInclude Include="Code\TextureBuff.h">
       <Filter>File\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DXGI.h">
+      <Filter>File\DirectX\DXGI</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ImagePre.h">
+      <Filter>File\ObjectSet\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ConsBuffer.h">
+      <Filter>File\ObjectSet\ConstantBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ObjManager.h">
+      <Filter>File\ObjectSet\ObjManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\PolyTemp.h">
+      <Filter>File\ObjectSet\Polygon\Temp</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\DeltaPoly.h">
+      <Filter>File\ObjectSet\Polygon\Delta</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Vertex.h">
+      <Filter>File\ObjectSet</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ObjTemp.h">
+      <Filter>File\ObjectSet\Object\Temp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

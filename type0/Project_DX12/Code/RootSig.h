@@ -1,22 +1,22 @@
 #pragma once
-#include <cassert>
 
 #include <d3d12.h>
+#include <wrl/client.h>
 
-//フルスクリーン描画
-struct ScreenRoot
+//フルスクリーン(画像?)描画
+struct Root2D
 {
-	ScreenRoot()
+	Root2D()
 	{
 		r0.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
 		r0.NumDescriptors = 1;
 		r0.BaseShaderRegister = 0;
+		r0.RegisterSpace = 0;
 		r0.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
 
 		rPara[0].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
 		rPara[0].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
-		rPara[0].DescriptorTable.pDescriptorRanges = &r0;
-		rPara[0].DescriptorTable.NumDescriptorRanges = 1;
+		rPara[0].DescriptorTable = { 1, &r0 };
 
 		sample[0].Filter = D3D12_FILTER_MIN_MAG_MIP_LINEAR;
 		sample[0].AddressU = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
@@ -33,8 +33,8 @@ struct ScreenRoot
 		sample[0].ShaderRegister = 0;
 		sample[0].RegisterSpace = 0;
 
-		desc.pParameters = rPara;
 		desc.NumParameters = 1;
+		desc.pParameters = rPara;
 		desc.pStaticSamplers = sample;
 		desc.NumStaticSamplers = 1;
 		desc.Flags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
@@ -45,19 +45,29 @@ struct ScreenRoot
 	D3D12_ROOT_SIGNATURE_DESC desc{};
 };
 
+//3Dモデル描画
+
 class RootSig
 {
 private:
-	ID3D12RootSignature* rootShignature{};//ルートシグネチャー
-
-public:
-	RootSig() = default;//コンストラクタ
-	~RootSig();			//デストラクタ
+	Microsoft::WRL::ComPtr<ID3D12RootSignature> rootShignature{};//ルートシグネチャー
 
 	//ルートシグネチャーの作成
-	bool Create(ID3D12Device*,const ScreenRoot&);
+	bool Set(const D3D12_ROOT_SIGNATURE_DESC&);
+
+public:
+	//コンストラクタ　デストラクタ
+	RootSig() = default;
+	~RootSig() = default;
+
+	//ルートシグネチャーの作成の準備
+	template <class T>
+	bool Create() {
+		T Temp;
+		return Set(Temp.desc);
+	}
 
 	//ルートシグネチャーの取得
-	ID3D12RootSignature* Get() { return rootShignature; }
+	ID3D12RootSignature* Get() { return rootShignature.Get(); }
 };
 

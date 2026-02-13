@@ -1,34 +1,34 @@
 #pragma once
-#include <cassert>
 
 #include <d3d12.h>
+#include <wrl/client.h>
+#include <vector>
 
 /// <summary>
-/// コマンドアロケータ
-/// コマンドリスト
-/// コマンドキュー
-/// 等のグループ化クラス
+/// コマンド_アロケータ リスト キュー 等のグループ化クラス
 /// </summary>
 class ComGroup
 {
 private:
-	ID3D12CommandAllocator* commandAllocator;	//コマンドアロケータ
-	ID3D12GraphicsCommandList* commandList;		//コマンドリスト
-	ID3D12CommandQueue* commandQueue;			//コマンドキュー
+	std::vector<Microsoft::WRL::ComPtr<ID3D12CommandAllocator>> allocacators;	//コマンドアロケータ
+	Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> list;						//コマンドリスト
+	Microsoft::WRL::ComPtr<ID3D12CommandQueue> queue;							//コマンドキュー
 
 public:
-	ComGroup() = default;//コンストラクタ
-	~ComGroup();		 //デストラクタ
+	//コンストラクタ　デストラク
+	ComGroup() = default;
+	~ComGroup() { allocacators.clear(); }
 
-	//コマンドアロケータ　コマンドリスト　コマンドキュー　作成
-	bool Create(ID3D12Device*, D3D12_COMMAND_LIST_TYPE);
+	//コマンド_アロケータ リスト キュー　作成
+	bool Create(UINT, D3D12_COMMAND_LIST_TYPE);
 	
 	//コマンドアロケータの取得
-	ID3D12CommandAllocator* GetAllo() const { return commandAllocator; }
+	ID3D12CommandAllocator* Allo(UINT i = 0) const { return allocacators[i].Get(); }
 	//コマンドリストの取得
-	ID3D12GraphicsCommandList* GetList() const { return commandList; }
+	ID3D12GraphicsCommandList* List() const { return list.Get(); }
 	//コマンドキューの取得
-	ID3D12CommandQueue* GetQueue() const { return commandQueue; }
+	ID3D12CommandQueue* Queue() const { return queue.Get(); }
+
 
 	//レンダ―ターゲットを各々変更
 	void ResourceBarrier(ID3D12Resource*, D3D12_RESOURCE_STATES, D3D12_RESOURCE_STATES);

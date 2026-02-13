@@ -1,5 +1,4 @@
 #include "Window.h"
-#include "Factory.h"
 #include "Device.h"
 #include "ComGroup.h"
 #include "SwapChain.h"
@@ -9,82 +8,65 @@
 #include "Shader.h"
 #include "RootSig.h"
 #include "PipLine.h"
-
-#include "TextureData.h"
-#include "SquarePoly.h"
+#include "ObjManager.h"
 
 class Operations
 {
 private:
-	std::pair<UINT, UINT> size = { 1600, 900 };	//ウィンドウサイズ
-	Window win;			//ウィンドウクラス
-	Factory factory;	//ファクトリークラス
-	Device device;		//デバイスクラス
-	ComGroup command;   //コマンドグループクラス
-	SwapChain swap;		//スワップチェーンクラス
-	Heap descripHeapRTV;//ディスクリプタヒープクラス
-	RendTarget render;	//レンダ―ターゲットクラス
-	Fence fence;		//フェンスクラス
-	RootSig rootShig;	//ルートシグネチャークラス
-	PipLine pipLine;	//パイプラインステートクラス
+	ComGroup command{};		//コマンド アロケータ_リスト_キュー クラス
+	SwapChain swap{};		//スワップチェインクラス
+	RendTarget target{};	//レンダ―ターゲットクラス
+	Fence fence{};			//フェンスクラス
+	RootSig root00{};	//ルートシグネチャークラス
+	
+	PipLine pip00{};	//パイプラインステートクラス
 
-	SquarePoly square;	//四角形ポリゴンクラス
-	TextureData texBuff;//テクスチャのバッファクラス
-	Heap textureHeapSRV;//テクスチャのヒープクラス
-
-	Shader sha00;//シェーダー00クラス
+	Shader sha00{};//シェーダー00クラス
 
 public:
-	Operations() = default;	//コンストラクタ
-	~Operations() = default;//デストラクタ
+	//コンストラクタ　デストラクタ
+	Operations() = default;	
+	~Operations() = default;
 
 	//初期化
 	bool Initialize(HINSTANCE instance)
 	{
 		//ウィンドウの生成
-		if(win.Create(instance, size, "DirectX12"))			return false;
-
-		//ファクトリーの作成
-		if (factory.Create())								return false;
+		if (Window::Ins().Create(instance, { 1600, 900 }, "DirectX12"))	return false;
 
 		//デバイスの作成
-		if (device.Create())					return false;
+		if (Device::Ins().Create())	return false;
 
 		//コマンドアロケータ　コマンドリスト　コマンドキュー　作成
-		if (command.Create(device.Get(), D3D12_COMMAND_LIST_TYPE_DIRECT)) return false;
+		if (command.Create(2, D3D12_COMMAND_LIST_TYPE_DIRECT))	return false;
 
 		//スワップチェーンの作成
-		if (swap.Create(size, factory.Get(), command.GetQueue(), win.GetHWND())) return false;
+		if (swap.Create(command.Queue())) return false;
+		
+		//RTVヒープの作成
+		if (HeapReader::Ins().Create(D3D12_DESCRIPTOR_HEAP_TYPE_RTV, swap.Desc().BufferCount, false))	return false;
 
-		//ディスクリプタヒープの作成
-		if (descripHeapRTV.Create(device.Get(), D3D12_DESCRIPTOR_HEAP_TYPE_RTV, swap.GetDesc().BufferCount)) return false;
-
+		//SRVヒープの作成
+		if (HeapReader::Ins().Create(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, 32, true))	return false;
+		
 		//レンダ―ターゲットの作成
-		if (render.Create(device.Get(), swap.GetDesc(), swap.GetChain(), descripHeapRTV.GetHeap()))	return false;
+		if (target.Create(swap.Desc(), swap.Chain()))	return false;
 
 		//フェンスの作成
-		if (fence.Create(device.Get()))	return false;
+		if (fence.Create())	return false;
 
-		//四角形の作成
-		if (square.Create(device.Get()))	return false;
+		//ルートシグネチャー(スクリーン)の作成
+		if (root00.Create<Root2D>())		return false;
 
 		//シェーダー00の作成
 		if (sha00.Create("Code/HLSL/Shader00.hlsl"))		return false;
 
-		//ルートシグネチャーの作成
-		if (rootShig.Create(device.Get(), ScreenRoot()))		return false;
-
 		//パイプラインステートの作成
-		if (pipLine.Create(0, device.Get(), rootShig.Get(), sha00.VS(), sha00.PS(), 2, true))	return false;
+		if (pip00.Create(root00.Get(), sha00.VS(), sha00.PS(), true, Model3D::Layout()))	return false;
+	
+		//ゲームオブジェクトを作成
 
-		//テクスチャのバッファを作成
-		if (texBuff.Create("Image/Noct.jpg", device.Get()))	return false;
-
-		//テクスチャのヒープ作成
-		if (textureHeapSRV.Create(device.Get(), D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, 1, true))	return false;
-
-		texBuff.SetSRV(textureHeapSRV.GetHeap(), device.Get());
-
+		
 		//No abnormalitys
 		return true;
 	}
@@ -96,7 +78,7 @@ public:
 		while (GetMessage(&msg, nullptr, 0, 0))
 		{
 			//未使用のバッファーインデックスを取得
-			const UINT backIdx = swap.GetChain()->GetCurrentBackBufferIndex();
+			const UINT backIdx = swap.Chain()->GetCurrentBackBufferIndex();
 
 			//フェンスの確認
 			fence.Check(backIdx);
@@ -105,46 +87,49 @@ public:
 			command.Resets(backIdx);
 
 			//ヒープの設定
-			ID3D12DescriptorHeap* pSRV[] = { textureHeapSRV.GetHeap() };
-			command.GetList()->SetDescriptorHeaps(1, pSRV);
+			ID3D12DescriptorHeap* pSRV[] = { HeapReader::Ins().GetHeap(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV)};
+			command.List()->SetDescriptorHeaps(1, pSRV);
 
 			//ターゲット　プレゼント → レンダーターゲット
-			command.ResourceBarrier(render.Get(backIdx), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+			command.ResourceBarrier(target.Get(backIdx), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
 
-			//レンダ―ターゲットの設定
-			D3D12_CPU_DESCRIPTOR_HANDLE hendles[] = {render.GetHendle(device.Get(), descripHeapRTV.GetHeap(), backIdx)};
-			//設定の適応
-			command.GetList()->OMSetRenderTargets(1, hendles, true, nullptr);
+			//レンダ―ターゲットの設定　登録
+			D3D12_CPU_DESCRIPTOR_HANDLE hendles[] = {target.RTVhandle(backIdx)};
+			command.List()->OMSetRenderTargets(1, hendles, true, nullptr);
 
+			//ビューボードの設定
+			const auto size = target.Size();
 			command.SetVS(size.first, size.second);
 
 			//レンダ―ターゲットをクリア
-			float clearColor[] = { 0.0f, 0.0f, 0.0f, 1.0f };
-			command.GetList()->ClearRenderTargetView(hendles[0], clearColor, 0, nullptr);
+			float clearColor[] = { 0.0f, 1.0f, 0.0f, 1.0f };
+			command.List()->ClearRenderTargetView(hendles[0], clearColor, 0, nullptr);
 
-			command.GetList()->SetGraphicsRootSignature(rootShig.Get());
-			command.GetList()->SetPipelineState(pipLine.Get());
+			command.List()->SetGraphicsRootSignature(root00.Get());
+			command.List()->SetPipelineState(pip00.Get());
 
-			command.GetList()->SetGraphicsRootDescriptorTable(0, textureHeapSRV.GetHeap()->GetGPUDescriptorHandleForHeapStart());
-			square.Drow(command.GetList());
+			command.List()->SetGraphicsRootDescriptorTable(0, HeapReader::Ins().GetHeap(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV)->GetGPUDescriptorHandleForHeapStart());
+			//square.Drow(command.List());
+
+			//ターゲット　レンダーターゲット → プレゼント
+			command.ResourceBarrier(target.Get(backIdx), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
 
 			//コマンドリストの閉鎖
-			command.GetList()->Close();
+			command.List()->Close();
 
 			//コマンドキューにリストをセットし実行
-			ID3D12CommandList* commandLists[] = { command.GetList() };
-			command.GetQueue()->ExecuteCommandLists(1, commandLists);
+			ID3D12CommandList* commandLists[] = { command.List() };
+			command.Queue()->ExecuteCommandLists(1, commandLists);
 
-			swap.GetChain()->Present(1, 0);
+			swap.Chain()->Present(1, 0);
 
 			//フェンスの更新
-			fence.Updata(command.GetQueue(), backIdx);
+			fence.Updata(command.Queue(), backIdx);
 
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
 	}
-
 };
 
 //エントリーポイント

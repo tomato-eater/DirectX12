@@ -1,19 +1,12 @@
 #include "Fence.h"
+#include <cassert>
 
-//デストラクタ
-Fence::~Fence()
-{
-	if (fence)
-	{
-		fence->Release();
-		fence = nullptr;
-	}
-}
+#include "Device.h"
 
 //フェンスの生成
-bool Fence::Create(ID3D12Device* device)
+bool Fence::Create()
 {
-	if (device->CreateFence(
+	if (Device::Ins().Get()->CreateFence(
 		0,						//初期値
 		D3D12_FENCE_FLAG_NONE,	//フラッグ
 		IID_PPV_ARGS(&fence)	//フェンス
@@ -28,7 +21,7 @@ bool Fence::Create(ID3D12Device* device)
 		false,			//初期状態
 		"Wait_GPU"		//イベントの名前
 	);
-	if (!fence)
+	if (!event)
 	{
 		assert(false && "イベントの作成ー失敗ー");
 		return true;
@@ -52,6 +45,6 @@ void Fence::Check(UINT idx)
 //フェンス値の更新
 void Fence::Updata(ID3D12CommandQueue* commandQueue, UINT idx)
 {
-	commandQueue->Signal(fence, nextValue);
+	commandQueue->Signal(fence.Get(), nextValue);
 	value[idx] = nextValue++;
 }

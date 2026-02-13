@@ -1,27 +1,36 @@
 #pragma once
-#include <cassert>
-
-#include <d3d12.h>
-#include <vector>
 
 #include <dxgi1_6.h>
+#include <d3d12.h>
+#include <vector>
+#include <wrl/client.h>
+#include <utility>
 
 class RendTarget
 {
 private:
-	std::vector<ID3D12Resource*> renderTargets; //レンダーターゲット
+	std::vector<Microsoft::WRL::ComPtr<ID3D12Resource>> renderTargets{}; //レンダーターゲット
+
+	//レンダービューの作成
+	bool CreateRender();
+
+	//シェーダービューの作成
+	bool CreateShader();
 
 public:
-	RendTarget() = default;	//コンストラクタ
-	~RendTarget();			//デストラクタ
+	//コンストラクタ　デストラクタ
+	RendTarget() = default;
+	~RendTarget() { renderTargets.clear(); }
 
 	//レンダーターゲットの作成
-	bool Create(ID3D12Device*, DXGI_SWAP_CHAIN_DESC1,IDXGISwapChain4*, ID3D12DescriptorHeap*);
+	bool Create(const DXGI_SWAP_CHAIN_DESC1&,IDXGISwapChain4*);
 
 	//レンダーターゲットの取得
-	ID3D12Resource* Get(UINT index) const { return renderTargets[index]; }
+	ID3D12Resource* Get(UINT index) const { return renderTargets[index].Get(); }
 
-	//ディスクリプタハンドルの取得
-	D3D12_CPU_DESCRIPTOR_HANDLE GetHendle(ID3D12Device*,ID3D12DescriptorHeap*, UINT);
+	//レンダ―ターゲットのサイズ取得
+	std::pair<float, float> Size() const;
+
+	//ディスクリプタハンドルRTVの取得
+	D3D12_CPU_DESCRIPTOR_HANDLE RTVhandle(UINT) const;
 };
-

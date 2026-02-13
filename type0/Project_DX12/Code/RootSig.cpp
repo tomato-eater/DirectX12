@@ -1,28 +1,23 @@
 #include "RootSig.h"
+#include <cassert>
 
-//デストラクタ
-RootSig::~RootSig()
-{
-	if (rootShignature)
-	{
-		rootShignature->Release();
-		rootShignature = nullptr;
-	}
-}
+#include "Device.h"
+
+#pragma comment(lib, "d3d12.lib")
 
 //ルートシグネチャーの生成
-bool RootSig::Create(ID3D12Device* device, const ScreenRoot& rootDesc)
+bool RootSig::Set(const D3D12_ROOT_SIGNATURE_DESC& rootDesc)
 {
 	//シリアライズ
-	ID3DBlob* shigBlob{};
-	ID3DBlob* error{};
+	Microsoft::WRL::ComPtr<ID3DBlob> shigBlob{};
+ 	Microsoft::WRL::ComPtr<ID3DBlob> error{};
 
 	if (D3D12SerializeRootSignature(
-		&rootDesc.desc,						//上記のデスク
+		&rootDesc,						//上記のデスク
 		D3D_ROOT_SIGNATURE_VERSION_1_0,	//シグネチャーのバージョン
 		&shigBlob,						//上記のシリアライズ
-		&error))						//上記のエラー
-	{
+		&error)							//上記のエラー
+		!= S_OK){
 		if (error){
 			const char* msg = static_cast<const char*>(error->GetBufferPointer());
 			OutputDebugStringA(msg);
@@ -33,12 +28,12 @@ bool RootSig::Create(ID3D12Device* device, const ScreenRoot& rootDesc)
 	}
 
 	//生成
-	device->CreateRootSignature(
+	if (Device::Ins().Get()->CreateRootSignature(
 		0,								//ノードマスク
 		shigBlob->GetBufferPointer(),	//上記のシリアライズの場所を取得
 		shigBlob->GetBufferSize(),		//上記のシリアライズのサイズに更新
-		IID_PPV_ARGS(&rootShignature));	//ぶち込む
-	if (!rootShignature) {
+		IID_PPV_ARGS(&rootShignature))	//ぶち込む
+		!= S_OK){
 		assert(false && "ルートシグネチャー生成ー失敗ー");
 		return true;
 	}

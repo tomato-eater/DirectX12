@@ -1,9 +1,8 @@
 #pragma once
-#include <cassert>
+/*
+#include "Vertex.h"
 
-#include "../Code/Vertex.h"
-
-class SquarePoly
+class TestSquarePoly
 {
 private:
 	ID3D12Resource* vertexBuffer{};			//頂点バッファ
@@ -15,12 +14,12 @@ private:
 	UINT indexSize{};						//インデックスバッファのサイズ
 
 public:
-	SquarePoly() = default;	//コンストラクタ
-	~SquarePoly();			//デストラクタ
+	TestSquarePoly() = default;	//コンストラクタ
+	~TestSquarePoly();			//デストラクタ
 
 	//頂点　インデックス　の生成
 	bool Create(ID3D12Device*);
 
 	//描画
 	void Drow(ID3D12GraphicsCommandList*);
-};
+};*/

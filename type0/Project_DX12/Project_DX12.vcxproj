@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -20,34 +20,54 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\ComGroup.cpp" />
+    <ClCompile Include="Code\ConsBuffer.cpp" />
+    <ClCompile Include="Code\DeltaPoly.cpp" />
     <ClCompile Include="Code\Device.cpp" />
-    <ClCompile Include="Code\Factory.cpp" />
+    <ClCompile Include="Code\DXGI.cpp" />
     <ClCompile Include="Code\Fence.cpp" />
     <ClCompile Include="Code\Heap.cpp" />
+    <ClCompile Include="Code\ImagePre.cpp" />
     <ClCompile Include="Code\Main.cpp" />
+    <ClCompile Include="Code\ObjManager.cpp" />
+    <ClCompile Include="Code\ObjTemp.cpp" />
     <ClCompile Include="Code\PipLine.cpp" />
+    <ClCompile Include="Code\PolyTemp.cpp" />
     <ClCompile Include="Code\RendTarget.cpp" />
     <ClCompile Include="Code\RootSig.cpp" />
     <ClCompile Include="Code\Shader.cpp" />
-    <ClCompile Include="Code\SquarePoly.cpp" />
+    <ClCompile Include="Code\TestSquarePoly.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Code\SwapChain.cpp" />
     <ClCompile Include="Code\TextureBuff.cpp" />
+    <ClCompile Include="Code\TextureData.cpp" />
     <ClCompile Include="Code\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\ComGroup.h" />
+    <ClInclude Include="Code\ConsBuffer.h" />
+    <ClInclude Include="Code\DeltaPoly.h" />
     <ClInclude Include="Code\Device.h" />
-    <ClInclude Include="Code\Factory.h" />
+    <ClInclude Include="Code\DXGI.h" />
     <ClInclude Include="Code\Fence.h" />
     <ClInclude Include="Code\Heap.h" />
+    <ClInclude Include="Code\ImagePre.h" />
+    <ClInclude Include="Code\ObjManager.h" />
+    <ClInclude Include="Code\ObjTemp.h" />
     <ClInclude Include="Code\PipLine.h" />
+    <ClInclude Include="Code\PolyTemp.h" />
     <ClInclude Include="Code\RendTarget.h" />
     <ClInclude Include="Code\RootSig.h" />
     <ClInclude Include="Code\Shader.h" />
-    <ClInclude Include="Code\SquarePoly.h" />
+    <ClInclude Include="Code\TestSquarePoly.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Code\SwapChain.h" />
     <ClInclude Include="Code\PipTemp.h" />
     <ClInclude Include="Code\TextureBuff.h" />
+    <ClInclude Include="Code\TextureData.h" />
     <ClInclude Include="Code\Vertex.h" />
     <ClInclude Include="Code\Window.h" />
   </ItemGroup>
@@ -143,7 +163,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)DirectXTex\DirectXtex;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -161,7 +181,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)DirectXTex\DirectXtex;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>

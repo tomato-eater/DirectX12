@@ -1,4 +1,6 @@
+/*
 #include "SquarePoly.h"
+#include <cassert>
 
 //デストラクタ
 SquarePoly::~SquarePoly()
@@ -20,7 +22,7 @@ bool SquarePoly::Create(ID3D12Device* device)
 {
 	//頂点
 	{
-		Vertex vertices[] = //座標と色
+		Vertex32 vertices[] = //座標と色
 		{
 			{{-1.0f, 1.0f, 0.0f},{0.0f,0.0f}},
 			{{ 1.0f, 1.0f, 0.0f},{1.0f,0.0f}},
@@ -46,7 +48,7 @@ bool SquarePoly::Create(ID3D12Device* device)
 		}
 
 		//マップの確認
-		Vertex* data{};
+		Vertex32* data{};
 		vertexBuffer->Map(0, nullptr, reinterpret_cast<void**>(&data));
 		if (!data) {
 			assert(false && "頂点バッファのマップー失敗ー");
@@ -58,7 +60,7 @@ bool SquarePoly::Create(ID3D12Device* device)
 		//成功したデータをぶち込む
 		vertexView.BufferLocation = vertexBuffer->GetGPUVirtualAddress();
 		vertexView.SizeInBytes = size;
-		vertexView.StrideInBytes = sizeof(Vertex);
+		vertexView.StrideInBytes = sizeof(Vertex32);
 	}
 
 	//インデックス
@@ -110,3 +112,4 @@ void SquarePoly::Drow(ID3D12GraphicsCommandList* list)
 	list->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 	list->DrawIndexedInstanced(indexSize, 1, 0, 0, 0);
 }
+*/

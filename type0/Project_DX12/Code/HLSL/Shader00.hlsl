@@ -1,22 +1,9 @@
-Texture2D<float4> tex : register(t0);
-SamplerState smp : register(s0);
-
-struct Output
+float4 vs(float4 pos : POSITION) : SV_POSITION
 {
-    float4 svPos : SV_POSITION;
-    float2 uv : TEXCOORD;
-};
-
-Output vs(float4 pos : POSITION, float2 uv : TEXCOORD)
-{
-    Output output;
-    output.svPos = pos;
-    output.uv = uv;
-    return output;
+    return pos;
 }
 
-float4 ps(Output input) : SV_TARGET
+float4 ps(float4 pos : SVPOSITION) : SV_TARGET
 {
-    return float4(tex.Sample(smp, input.uv));
-    //return float4(1, 1, 0, 1);
+    return float4(1, 1, 1, 1);
 }

@@ -1,5 +1,7 @@
 #include "Window.h"
 
+#include <cassert>
+
 // ウィンドウプロシージャ
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -30,10 +32,9 @@ bool Window::Create(HINSTANCE instance, std::pair<UINT, UINT> size, std::string 
 		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
 		size.first, size.second, nullptr, nullptr, wc.hInstance, nullptr);
 
-	if (!handle)
-	{
+	if (!handle) {
 		assert(false && "ウィンドウの作成ー失敗ー");
-		return false;
+		return true;
 	}
 
 	// ウィンドウの表示

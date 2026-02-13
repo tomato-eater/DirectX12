@@ -71,7 +71,7 @@ bool TextureData::Create(std::string name, ID3D12Device* device)
 }
 
 //シェーダーリソースビューの作成
-void TextureData::SetSRV(ID3D12DescriptorHeap* heap, ID3D12Device* device)
+void TextureData::Set(ID3D12DescriptorHeap* heap, ID3D12Device* device)
 {
 	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc{};
 	srvDesc.Format = metadata.format;
@@ -79,6 +79,6 @@ void TextureData::SetSRV(ID3D12DescriptorHeap* heap, ID3D12Device* device)
 	srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
 	srvDesc.Texture2D.MipLevels = 1;
 
-	auto cpuHandle = heap->GetCPUDescriptorHandleForHeapStart();
-	device->CreateShaderResourceView(texResource, &srvDesc, cpuHandle);
+	auto handle = heap->GetCPUDescriptorHandleForHeapStart();
+	device->CreateShaderResourceView(texResource, &srvDesc, handle);
 }

@@ -4,21 +4,30 @@
 #include <utility>
 #include <string>
 
-#include <cassert>
-
 //ウィンドウクラス
 class Window
 {
 private:
+	//コンストラクタ　デストラクタ
+	Window() = default;	
+	~Window() = default;
+
 	HWND handle{};	//ウィンドウハンドル
+	std::pair<UINT, UINT> size{};
 
 public:
-	Window() = default;	//コンストラクタ
-	~Window() = default;//デストラクタ
+	//インスタンス　取得　参照
+	static Window& Ins() {
+		static Window win;
+		return win;
+	}
 
 	//ウィンドウの生成
 	bool Create(HINSTANCE,std::pair<UINT,UINT>, std::string);
 
 	//HWNDの取得
-	HWND GetHWND() const { return handle; }
+	HWND Get() const { return handle; }
+
+	//ウィンドウサイズの取得
+	std::pair<UINT, UINT> Size() const { return size; }
 };

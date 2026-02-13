@@ -1,29 +1,28 @@
 #pragma once
-#include <cassert>
 
 #include <dxgi1_6.h>
-#include <utility>
 #include <d3d12.h>
-#include <windef.h>
+#include <wrl/client.h>
 
 //スワップチェーンクラス
 class SwapChain
 {
 private:
-	IDXGISwapChain4* swapChain; //スワップチェーンインターフェース
-	DXGI_SWAP_CHAIN_DESC1 desc; //スワップチェーン記述子
+	Microsoft::WRL::ComPtr<IDXGISwapChain4> swapChain{};//スワップチェーンインターフェース
+	DXGI_SWAP_CHAIN_DESC1 desc{};						//スワップチェーンデスク
 
 public:
-	SwapChain() = default; //コンストラクタ
-	~SwapChain();         //デストラクタ
+	//コンストラクタ　デストラクタ
+	SwapChain() = default;
+	~SwapChain() = default;
 
 	//スワップチェーンの作成
-	bool Create(std::pair<UINT,UINT>, IDXGIFactory6*, ID3D12CommandQueue*, HWND);
+	bool Create(ID3D12CommandQueue*);
 
 	//スワップチェーンインターフェースの取得
-	IDXGISwapChain4* GetChain() const { return swapChain; }
+	IDXGISwapChain4* Chain() const { return swapChain.Get(); }
 
 	//スワップチェーン記述子の取得
-	DXGI_SWAP_CHAIN_DESC1 GetDesc() const { return desc; }
+	const DXGI_SWAP_CHAIN_DESC1& Desc() const { return desc; }
 };
 

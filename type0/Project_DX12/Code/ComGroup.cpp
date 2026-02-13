@@ -1,61 +1,53 @@
 #include "ComGroup.h"
+#include <cassert>
 
-//デストラクタ
-ComGroup::~ComGroup()
-{
-	if (commandList)
-	{
-		commandList->Release();
-		commandList = nullptr;
-	}
-	if (commandAllocator)
-	{
-		commandAllocator->Release();
-		commandAllocator = nullptr;
-	}
-}
+#include "Device.h"
 
-//コマンドアロケータ コマンドリスト　コマンドキュー 作成
-bool ComGroup::Create(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type)
+//コマンド アロケータ リスト キュー 作成
+bool ComGroup::Create(UINT idx, D3D12_COMMAND_LIST_TYPE type)
 {
+	ID3D12Device* device = Device::Ins().Get();
 	//コマンドアロケータの作成
 	{	
-		if (device->CreateCommandAllocator(
-			type,									//コマンドリストのタイプ
-			IID_PPV_ARGS(&commandAllocator)			//コマンドアロケータ
-		) != S_OK)
+		allocacators.resize(idx);
+		for (int i = 0; i < idx; i++)
 		{
-			assert(false && "コマンドアロケータの作成ー失敗ー");
-			return true;
+			if (device->CreateCommandAllocator(
+				type,									//コマンドリストのタイプ
+				IID_PPV_ARGS(&allocacators.at(i))		//コマンドアロケータ
+			) != S_OK)
+			{
+				assert(false && "コマンドアロケータの作成ー失敗ー");
+				return true;
+			}
 		}
 	}
 	//コマンドリストの作成
 	{
 		if (device->CreateCommandList(
-			0,										//ノードマスク
-			type,									//コマンドリストのタイプ
-			commandAllocator,						//コマンドアロケータ
-			nullptr,								//パイプラインステートオブジェクト
-			IID_PPV_ARGS(&commandList)				//コマンドリスト
+			0,						 //ノードマスク
+			type,					 //コマンドリストのタイプ
+			allocacators.at(0).Get(),//コマンドアロケータ
+			nullptr,				 //パイプラインステートオブジェクト
+			IID_PPV_ARGS(&list)		 //コマンドリスト
 		) != S_OK)
 		{
 			assert(false && "コマンドリストの作成ー失敗ー");
 			return true;
 		}
-		commandList->Close();
+		list->Close();
 	}
 	//コマンドキューの作成
 	{
-		D3D12_COMMAND_QUEUE_DESC desc{};//コマンドキュー記述子
-
-		desc.Type = type;				//コマンドリストのタイプ
-		desc.Priority = D3D12_COMMAND_QUEUE_PRIORITY_NORMAL; //優先度 (通常)
-		desc.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE; //フラグ(なし)
-		desc.NodeMask = 0;			//ノードマスク(アダプター1つ)
+		D3D12_COMMAND_QUEUE_DESC desc{};					//コマンドキュー記述子
+		desc.Type = type;									//コマンドリストのタイプ
+		desc.Priority = D3D12_COMMAND_QUEUE_PRIORITY_NORMAL;//優先度 (通常)
+		desc.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;			//フラグ(なし)
+		desc.NodeMask = 0;									//ノードマスク(アダプター1つ)
 
 		if (device->CreateCommandQueue(
 			&desc,						
-			IID_PPV_ARGS(&commandQueue)			//コマンドキュー
+			IID_PPV_ARGS(&queue)			//コマンドキュー
 		) != S_OK)
 		{
 			assert(false && "コマンドキューの作成ー失敗ー");
@@ -77,7 +69,7 @@ void ComGroup::ResourceBarrier(ID3D12Resource* renderTarget, D3D12_RESOURCE_STAT
 	barrier.Transition.Subresource = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;//UINT型のなんか
 
 	//変更完了
-	commandList->ResourceBarrier(1, &barrier);
+	list->ResourceBarrier(1, &barrier);
 }
 
 //ビューポート　シザー　の設定
@@ -90,19 +82,19 @@ void ComGroup::SetVS(float wi, float hi)
 	view.Height = static_cast<float>(hi);
 	view.MinDepth = 0.0f;
 	view.MaxDepth = 1.0f;
-	commandList->RSSetViewports(1, &view);
+	list->RSSetViewports(1, &view);
 
 	D3D12_RECT rect{};
 	rect.left = 0;
 	rect.top = 0;
 	rect.right = static_cast<UINT>(wi);
 	rect.bottom = static_cast<UINT>(hi);
-	commandList->RSSetScissorRects(1, &rect);
+	list->RSSetScissorRects(1, &rect);
 }
 
 //アロケータ　リスト　のリセット
 void ComGroup::Resets(UINT idx)
 {
-	commandAllocator->Reset();
-	commandList->Reset(commandAllocator, nullptr);
+	allocacators.at(idx)->Reset();
+	list->Reset(allocacators.at(idx).Get(), nullptr);
 }
