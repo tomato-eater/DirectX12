@@ -38,8 +38,7 @@ bool ConsBuffer::Create(UINT bufferSize)
 		&resDesc,
 		D3D12_RESOURCE_STATE_GENERIC_READ,
 		nullptr,
-		IID_PPV_ARGS(&consbuffer)) != S_OK)
-	{
+		IID_PPV_ARGS(&consbuffer)) != S_OK)	{
 		assert(false && "コンスタントバッファの作成ー失敗ー");
 		return true;
 	}

@@ -15,7 +15,6 @@ public:
 	//ポリゴンの作成
 	bool Create();
 
-
 	//ポリゴンの描画
 	void Drow(ID3D12GraphicsCommandList*);
 
@@ -24,14 +23,14 @@ protected:
 	D3D12_VERTEX_BUFFER_VIEW vertexView{};				//頂点バッファービュー
 	Microsoft::WRL::ComPtr<ID3D12Resource> indexBuff{};	//インデックスバッファー
 	D3D12_INDEX_BUFFER_VIEW indexView{};				//インデックスバッファービュー
-	UINT count{};									//インデックス数
-	D3D_PRIMITIVE_TOPOLOGY	topolory{};					//描画タイプ
+	UINT count{};										//インデックス数
+	D3D_PRIMITIVE_TOPOLOGY	topology{};					//描画タイプ
 
 	//頂点バッファの作成
-	virtual bool CreateVertex() {};
+	virtual bool CreateVertex() = 0;
 
 	//インデックスバッファの作成
-	virtual bool CreateIndex() {};
+	virtual bool CreateIndex() = 0;
 
 	//ヒープの設定
 	virtual D3D12_HEAP_PROPERTIES SetHeap();

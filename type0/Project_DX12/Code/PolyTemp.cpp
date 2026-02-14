@@ -43,6 +43,6 @@ void PolyTemp::Drow(ID3D12GraphicsCommandList* list)
 {
 	list->IASetVertexBuffers(0, 1, &vertexView);
 	list->IASetIndexBuffer(&indexView);
-	list->IASetPrimitiveTopology(topolory);
+	list->IASetPrimitiveTopology(topology);
 	list->DrawIndexedInstanced(count, 1, 0, 0, 0);
 }

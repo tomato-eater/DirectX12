@@ -1,7 +1,5 @@
 #pragma once
 
-#include <utility>
-
 //ゲームオブジェクトクラス
 class ObjManager
 {
@@ -10,7 +8,11 @@ private:
 	ObjManager() = default;
 	~ObjManager() = default;
 
-	uint64_t count{};	//オブジェクト識別番号
+	//各ポリゴンの作成
+	void CreatePoly();
+
+	//各バッファの作成
+	void CreateBuff();
 
 public:
 	//インスタンス　取得　参照
@@ -20,6 +22,10 @@ public:
 	}
 
 	//オブジェクトの作成
-	void Create(std::pair<float, float>);
+	void Create()
+	{
+		CreatePoly();	//ポリゴンの作成
+		CreateBuff();	//バッファの作成　自分/敵　等
+	}
 };
 

@@ -55,12 +55,6 @@
     <Filter Include="File\ObjectSet\ObjManager">
       <UniqueIdentifier>{6b284b51-b644-4dc5-b0bb-b4b6d787c7b5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="File\ObjectSet\Object">
-      <UniqueIdentifier>{96a2d655-33b8-4e01-9719-677783c68271}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="File\ObjectSet\ObjCont">
-      <UniqueIdentifier>{b69a62c5-21bf-4e30-95da-8b17e7bcb068}</UniqueIdentifier>
-    </Filter>
     <Filter Include="File\ObjectSet\Polygon">
       <UniqueIdentifier>{fdb3a5c3-efbe-4ac2-8fb8-e0c8775a80b0}</UniqueIdentifier>
     </Filter>
@@ -79,11 +73,11 @@
     <Filter Include="File\ObjectSet\Camera">
       <UniqueIdentifier>{2424518d-082a-46da-a875-1f2394a211bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="File\ObjectSet\Object\Temp">
-      <UniqueIdentifier>{a3fe1b05-2cb6-44e7-a0a2-c738ac277968}</UniqueIdentifier>
-    </Filter>
     <Filter Include="File\ObjectSet\Polygon\Delta">
       <UniqueIdentifier>{2e663929-0cc5-470b-b587-854676e70f9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File\ObjectSet\Object">
+      <UniqueIdentifier>{052ace00-6526-4f11-b9a4-bd5298e2156b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -147,8 +141,8 @@
     <ClCompile Include="Code\DeltaPoly.cpp">
       <Filter>File\ObjectSet\Polygon\Delta</Filter>
     </ClCompile>
-    <ClCompile Include="Code\ObjTemp.cpp">
-      <Filter>File\ObjectSet\Object\Temp</Filter>
+    <ClCompile Include="Code\Object.cpp">
+      <Filter>File\ObjectSet\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -215,8 +209,8 @@
     <ClInclude Include="Code\Vertex.h">
       <Filter>File\ObjectSet</Filter>
     </ClInclude>
-    <ClInclude Include="Code\ObjTemp.h">
-      <Filter>File\ObjectSet\Object\Temp</Filter>
+    <ClInclude Include="Code\Object.h">
+      <Filter>File\ObjectSet\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

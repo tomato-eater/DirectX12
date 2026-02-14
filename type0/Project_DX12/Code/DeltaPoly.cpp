@@ -43,7 +43,7 @@ bool DeltaPoly::CreateVertex()
 	vertexView.SizeInBytes = size;
 	vertexView.StrideInBytes = sizeof(Model3D::Vertex);
 
-	topolory = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	topology = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 	return false;
 }
 

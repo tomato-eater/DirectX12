@@ -28,8 +28,8 @@
     <ClCompile Include="Code\Heap.cpp" />
     <ClCompile Include="Code\ImagePre.cpp" />
     <ClCompile Include="Code\Main.cpp" />
+    <ClCompile Include="Code\Object.cpp" />
     <ClCompile Include="Code\ObjManager.cpp" />
-    <ClCompile Include="Code\ObjTemp.cpp" />
     <ClCompile Include="Code\PipLine.cpp" />
     <ClCompile Include="Code\PolyTemp.cpp" />
     <ClCompile Include="Code\RendTarget.cpp" />
@@ -53,8 +53,8 @@
     <ClInclude Include="Code\Fence.h" />
     <ClInclude Include="Code\Heap.h" />
     <ClInclude Include="Code\ImagePre.h" />
+    <ClInclude Include="Code\Object.h" />
     <ClInclude Include="Code\ObjManager.h" />
-    <ClInclude Include="Code\ObjTemp.h" />
     <ClInclude Include="Code\PipLine.h" />
     <ClInclude Include="Code\PolyTemp.h" />
     <ClInclude Include="Code\RendTarget.h" />

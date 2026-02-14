@@ -2,8 +2,13 @@
 
 #include "Vertex.h"
 
-namespace
+class  PipTemp
 {
+private:
+public:
+	PipTemp() = default;
+	virtual ~PipTemp() = default;
+
 	//ラスタライズステート　表裏面表示など
 	D3D12_RASTERIZER_DESC Rasterizer()
 	{
@@ -53,8 +58,8 @@ namespace
 		depthDesc.DepthEnable = depth;
 		depthDesc.StencilEnable = false;
 		depthDesc.DepthWriteMask = depth ? D3D12_DEPTH_WRITE_MASK_ALL : D3D12_DEPTH_WRITE_MASK_ZERO;
-		depthDesc.DepthFunc = depth ? D3D12_COMPARISON_FUNC_LESS : D3D12_COMPARISON_FUNC_NONE;
+		depthDesc.DepthFunc = depth ? D3D12_COMPARISON_FUNC_LESS : D3D12_COMPARISON_FUNC_ALWAYS;
 
 		return depthDesc;
 	}
-}
+};

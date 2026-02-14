@@ -4,7 +4,7 @@
 
 #include <wrl/client.h>
 
-class PipLine
+class PipLine : public PipTemp
 {
 private:
 	Microsoft::WRL::ComPtr<ID3D12PipelineState> pipLineState{};	//パイプラインステート

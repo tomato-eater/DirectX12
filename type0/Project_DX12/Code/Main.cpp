@@ -65,7 +65,7 @@ public:
 		if (pip00.Create(root00.Get(), sha00.VS(), sha00.PS(), true, Model3D::Layout()))	return false;
 	
 		//ゲームオブジェクトを作成
-
+		//ObjManager::Ins().Create();
 		
 		//No abnormalitys
 		return true;
